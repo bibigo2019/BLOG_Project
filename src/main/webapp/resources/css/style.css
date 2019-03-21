@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.jumbotron {
+	background-image: url("../images/Lighthouse.jpg");
+}
+
+.avata-sm {
+	width: 30px
+}
+
+.avata-md {
+	width: 50px
+}
+

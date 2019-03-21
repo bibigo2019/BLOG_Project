@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE tiles-definitions PUBLIC 
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" 
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+
+	<!-- default : 템플릿에 설정된 페이지의 구성 요소에 대한 실제 파일 지정 -->
+	<definition name="default" template="/WEB-INF/views/layouts/default_template.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/layouts/default/header.jsp" />
+		<put-attribute name="menu"
+			value="/WEB-INF/views/layouts/default/menu.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/layouts/default/body.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/layouts/default/footer.jsp" />
+	</definition>
+	
+	
+	<!-- 관리자용 -->
+	<definition name="*/*" extends="default">
+		<!-- <put-attribute name="admin-menu" value="/WEB-INF/views/layouts/admin/admin-menu.jsp" /> -->
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+	
+	<!-- 뷰의 이름이 home인 경우 default를 확장하여 아래 설정에 의해서 페이지를 만들게 됩니다. -->
+	<definition name="index" extends="default">
+		<put-attribute name="body"
+			value="/WEB-INF/views/index.jsp" />
+	</definition>
+	<definition name="home" extends="default">
+		<put-attribute name="body"
+			value="/WEB-INF/views/home.jsp" />
+	</definition>
+</tiles-definitions>
