@@ -17,6 +17,6 @@ public class SampleController {
 	
 	@GetMapping("/sample")
 	public String view(Model model) throws Exception {
-		return "sample/view";
+		return "sample/sample";
 	}
 }

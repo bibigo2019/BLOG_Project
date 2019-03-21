@@ -16,7 +16,6 @@
 			value="/WEB-INF/views/layouts/default/footer.jsp" />
 	</definition>
 	
-	
 	<!-- 관리자용 -->
 	<definition name="*/*" extends="default">
 		<!-- <put-attribute name="admin-menu" value="/WEB-INF/views/layouts/admin/admin-menu.jsp" /> -->

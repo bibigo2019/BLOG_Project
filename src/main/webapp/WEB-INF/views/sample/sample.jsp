@@ -33,7 +33,7 @@
 						Donec id elit non mi porta gravida at eget metus. Nullam id dolor
 						id nibh ultricies vehicula ut id elit.</p>
 				</div>
-				<img src="/resources/images/demo_1.jpg" alt="Los Angeles">
+				<img src="${contextPath}/resources/images/demo_1.jpg" alt="Los Angeles">
 			</div>
 			<div class="carousel-item">
 				<div class="carousel-caption">
@@ -42,7 +42,7 @@
 						Donec id elit non mi porta gravida at eget metus. Nullam id dolor
 						id nibh ultricies vehicula ut id elit.</p>
 				</div>
-				<img src="/resources/images/demo_2.jpg" alt="Chicago">
+				<img src="${contextPath}/resources/images/demo_2.jpg" alt="Chicago">
 			</div>
 			<div class="carousel-item">
 				<div class="carousel-caption">
@@ -51,7 +51,7 @@
 						Donec id elit non mi porta gravida at eget metus. Nullam id dolor
 						id nibh ultricies vehicula ut id elit.</p>
 				</div>
-				<img src="/resources/images/demo_2.jpg" alt="New York">
+				<img src="${contextPath}/resources/images/demo_2.jpg" alt="New York">
 			</div>
 		</div>
 
