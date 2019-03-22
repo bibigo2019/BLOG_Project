@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="edu.autocar.post.dao.PostDao">
+
+	<resultMap id="postResult" type="PostVO" >
+	    <result property="content" column="content" jdbcType="CLOB" javaType="java.lang.String" />
+	</resultMap>
+
+	<select id="selectPost"  resultMap="postResult">
+		SELECT A.MEMBER_ID 
+  			, B.*
+		FROM MEMBER A, POST B
+		WHERE A.BLOG_ID = B.BLOG_ID
+		AND B.BLOG_ID =  #{ blogId }
+		AND B.POST_ID = #{ postId }
+	</select>
+	
+	<insert id="insertPost" parameterType="PostVO">
+		INSERT INTO POST(BLOG_ID,POST_ID,TITLE,CONTENT,READ_CNT,REG_DATE,UPDATE_DATE)
+		VALUES(
+			#{ blogId }
+			, BOARD_SEQ.NEXTVAL
+			, #{ title }
+			, #{ content, jdbcType=CLOB }
+			, 0
+			, SYSDATE
+			, SYSDATE		
+		)
+		
+		<selectKey keyProperty="postId" resultType="long" order="AFTER">
+			SELECT BOARD_SEQ.CURRVAL FROM DUAL
+		</selectKey>
+		
+	</insert>
+	
+</mapper>
