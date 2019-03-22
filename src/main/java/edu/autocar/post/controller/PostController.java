@@ -1,8 +1,5 @@
 package edu.autocar.post.controller;
 
-import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -17,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import edu.autocar.post.model.PostVO;
 import edu.autocar.post.service.PostService;
 import lombok.extern.slf4j.Slf4j;
-import oracle.sql.CLOB;
 
 @Controller
 @Slf4j
@@ -32,12 +28,11 @@ public class PostController {
 		
 		
 		model.addAttribute("post",vo);
+		model.addAttribute("blogId",blogId);
+		model.addAttribute("postId",postId);
 		log.debug("get post");
 		return "post/view";
 	}
-	
-	
-	
 	
 	@GetMapping("/{blogId}/write")
 	public String write(PostVO postVO, @PathVariable int blogId, Model model) throws Exception {
@@ -58,6 +53,36 @@ public class PostController {
 		long postId = postVO.getPostId();
 		
 		return "redirect:/{blogId}/view/"+postId;
+	}
+	
+	@GetMapping("/{blogId}/edit/{postId}")
+	public String edit(PostVO postVO, @PathVariable int blogId, @PathVariable int postId, Model model) throws Exception {
+		
+		postVO = service.selectPost(blogId,postId);
+		model.addAttribute("post",postVO);
+		
+		return "post/edit";
+	}
+	
+	@PostMapping("/{blogId}/edit/{postId}")
+	public String edit( @PathVariable int blogId, @PathVariable int postId, @Valid PostVO postVO, BindingResult result) throws Exception {
+		
+		postVO.setBlogId(blogId);
+		if(result.hasErrors()) {
+			log.info("Fail to bind a result.");
+			return "post/edit";
+		}
+		service.updatePost(postVO);
+		
+		return "redirect:/{blogId}/view/"+postId;
+	}
+	
+	@GetMapping("/{blogId}/delete/{postId}")
+	public String delete( @PathVariable int blogId, @PathVariable int postId) throws Exception {
+		
+		service.deletePost(blogId, postId);
+		
+		return "redirect:/";
 	}
 	
 }

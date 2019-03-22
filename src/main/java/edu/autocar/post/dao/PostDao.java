@@ -8,5 +8,6 @@ public interface PostDao {
 	PostVO selectPost(@Param("blogId") int blogId, @Param("postId") int postId) throws Exception;
 	
 	int insertPost(PostVO postVO) throws Exception;
-	
+	int updatePost(PostVO postVO) throws Exception;
+	int deletePost(@Param("blogId") int blogId, @Param("postId") int postId) throws Exception;
 }
