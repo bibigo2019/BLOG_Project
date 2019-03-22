@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.type.TypeHandler;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +47,12 @@ public class DatabaseConfig {
 				new PathMatchingResourcePatternResolver()
 					.getResources("classpath:mapper/*.xml"));
 		
+		sessionFactory.setTypeHandlersPackage("edu.autocar.cmmn.util");
+		
 		// MyBatis 설정
 		org.apache.ibatis.session.Configuration config =
 				sessionFactory.getObject().getConfiguration();
+		
 		config.setMapUnderscoreToCamelCase(true);
 		config.setCacheEnabled(false);
 		

@@ -26,6 +26,13 @@
 		<put-attribute name="body" value="/WEB-INF/views/sample/sample.jsp" />
 	</definition>
 	
+	<!-- 블로그용 -->
+	<definition name="blogs/*" template="/WEB-INF/views/layouts/default_template.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/layouts/default/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/blogs/{1}.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/layouts/default/footer.jsp" />
+	</definition>
+	
 	<!-- 포스트용 -->
 	<definition name="post/*" template="/WEB-INF/views/layouts/post_template.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/layouts/default/header.jsp" />
@@ -34,7 +41,6 @@
 		<put-attribute name="body" value="/WEB-INF/views/post/{1}.jsp" />
 		<put-attribute name="comments" value="/WEB-INF/views/post/comment.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/layouts/default/footer.jsp" />
-		
 	</definition>
 	
 	<!-- 뷰의 이름이 home인 경우 default를 확장하여 아래 설정에 의해서 페이지를 만들게 됩니다. -->

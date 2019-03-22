@@ -57,15 +57,13 @@ public class MvcConfig implements WebMvcConfigurer {
 	// 인터셉터 등록
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
+		
 		/*
-		registry.addInterceptor(loginInterceptor()) // 인터셉터 등록
-				.addPathPatterns(new String[] { // 적용 url 패턴
-						"/member/**", "/admin/**", "/board/*" })
-				.excludePathPatterns(new String[] { // 제외 url 패턴
-						"/sample/*","/member/avata/*", "/board/list", "/board/view" });
+		registry.addInterceptor(loginInterceptor()); // 인터셉터 등록
+		
 		registry.addInterceptor(adminInterceptor()) // 인터셉터 등록
 				.addPathPatterns("/admin/**"); // 적용 url 패턴
-				*/
+		*/
 	}
 
 	@Bean
