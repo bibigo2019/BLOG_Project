@@ -26,6 +26,13 @@
 		<put-attribute name="body" value="/WEB-INF/views/sample/sample.jsp" />
 	</definition>
 	
+	<!-- 블로그용 -->
+	<definition name="blogs/*" template="/WEB-INF/views/layouts/default_template.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/layouts/default/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/blogs/{1}.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/layouts/default/footer.jsp" />
+	</definition>
+	
 	<!-- 포스트용 -->
 	<definition name="post/*" template="/WEB-INF/views/layouts/post_template.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/layouts/default/header.jsp" />
