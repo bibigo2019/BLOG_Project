@@ -143,7 +143,7 @@
 		<div class="row featurette">
 			<div class="col-md-7">
 				<h2 class="featurette-heading">
-					<a href="#">${blogsVO.title}</a>
+					<a href="test/list">${blogsVO.title}</a>
 				</h2>
 				<p class="lead">blog 개요 설명 컬럼 필요 (=> blogsVO.summary)</p>
 			</div>
