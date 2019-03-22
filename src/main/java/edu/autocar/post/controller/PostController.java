@@ -1,15 +1,23 @@
 package edu.autocar.post.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.autocar.post.model.PostVO;
 import edu.autocar.post.service.PostService;
@@ -77,12 +85,25 @@ public class PostController {
 		return "redirect:/{blogId}/view/"+postId;
 	}
 	
-	@GetMapping("/{blogId}/delete/{postId}")
-	public String delete( @PathVariable int blogId, @PathVariable int postId) throws Exception {
+	@ResponseBody
+	@DeleteMapping("/{blogId}/delete/{postId}")
+	public ResponseEntity<Map<String,String>> delete( @PathVariable int blogId, @PathVariable int postId) throws Exception {
 		
-		service.deletePost(blogId, postId);
+		Map<String, String> map = new HashMap<>();
 		
-		return "redirect:/";
+		int res = service.deletePost(blogId, postId);
+		
+		if(res > 0) {
+			map.put("result","success");
+		}
+		else {
+			map.put("result","fail");
+		}
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "application/json; charset=utf-8");
+		return new ResponseEntity<Map<String, String>>(
+		map, headers, HttpStatus.OK);
 	}
 	
 }
