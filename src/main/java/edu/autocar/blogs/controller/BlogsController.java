@@ -10,12 +10,19 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
+@RequestMapping("/blogs")
 public class BlogsController {
 	/*
 	 * @Autowired SampleService service;
 	 */
+	@GetMapping("/")
+	public String main(Model model) throws Exception {
+		return "blogs/main";
+	}
+	
 	@GetMapping("/list")
-	public String view(Model model) throws Exception {
+	public String list(Model model) throws Exception {
 		return "blogs/list";
 	}
+
 }
