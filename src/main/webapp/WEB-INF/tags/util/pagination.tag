@@ -1,7 +1,7 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ attribute name="pageInfo" required="true"
-type="edu.autocar.domain.PageInfo" %>
+type="edu.autocar.blogs.model.PageInfo" %>
 	
 <ul class="pagination pagination-md justify-content-center">
 		<c:forEach var="p" begin="1" end="${pageInfo.totalPage}" varStatus="status">

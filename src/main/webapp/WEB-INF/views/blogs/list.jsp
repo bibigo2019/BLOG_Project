@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib tagdir="/WEB-INF/tags/util" prefix="iot"%>
 
 <style>
 .carousel-inner>.carousel-item>img, .carousel-inner>.carousel-item>a>img
@@ -17,6 +18,7 @@
 .carousel-caption {
 	text-align: right;
 }
+
 </style>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 	<!-- Indicators -->
@@ -133,84 +135,31 @@
 	</div>
 	<!-- /.row -->
 
-	<!-- 블로그 리스트 -->
-	<!-- START THE FEATURETTES -->
+	<!-- 블로그 리스트 DB 연동-->
 
-	<hr class="featurette-divider">
+	<c:forEach var="blogsVO" items="${pi.list}">
+		<hr class="featurette-divider">
 
-	<div class="row featurette">
-		<div class="col-md-7">
-			<h2 class="featurette-heading">
-				USER1 의 블로그
-			</h2>
-			<p class="lead">Donec ullamcorper nulla non metus auctor
-				fringilla. Vestibulum id ligula porta felis euismod semper. Praesent
-				commodo cursus magna, vel scelerisque nisl consectetur. Fusce
-				dapibus, tellus ac cursus commodo.</p>
-		</div>
-		<div class="col-md-5">
-			<svg
-				class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-				width="500" height="300" xmlns="http://www.w3.org/2000/svg"
-				preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
-				aria-label="Placeholder: 500x300">
+		<div class="row featurette">
+			<div class="col-md-7">
+				<h2 class="featurette-heading">
+					<a href="#">${blogsVO.title}</a>
+				</h2>
+				<p class="lead">blog 개요 설명 컬럼 필요 (=> blogsVO.summary)</p>
+			</div>
+			<div class="col-md-5">
+				<svg
+					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+					width="500" height="300" xmlns="http://www.w3.org/2000/svg"
+					preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
+					aria-label="Placeholder: 500x300" id="temp">
 				<title>Placeholder</title><rect width="100%" height="100%"
-					fill="#eee"></rect>
-				<text x="50%" y="50%" fill="#aaa" dy=".3em">500x300</text></svg>
+						fill="#eee"></rect>
+				<text x="50%" y="50%" fill="#aaa" dy=".3em">블로그 메인 이미지</text></svg>
+			</div>
 		</div>
-	</div>
-
-	<hr class="featurette-divider">
-
-	<div class="row featurette">
-		<div class="col-md-7 order-md-2">
-			<h2 class="featurette-heading">
-				USER2 의 블로그
-			</h2>
-			<p class="lead">Donec ullamcorper nulla non metus auctor
-				fringilla. Vestibulum id ligula porta felis euismod semper. Praesent
-				commodo cursus magna, vel scelerisque nisl consectetur. Fusce
-				dapibus, tellus ac cursus commodo.</p>
-		</div>
-		<div class="col-md-5 order-md-1">
-			<svg
-				class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-				width="500" height="300" xmlns="http://www.w3.org/2000/svg"
-				preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
-				aria-label="Placeholder: 500x300">
-				<title>Placeholder</title><rect width="100%" height="100%"
-					fill="#eee"></rect>
-				<text x="50%" y="50%" fill="#aaa" dy=".3em">500x300</text></svg>
-		</div>
-	</div>
-
-	<hr class="featurette-divider">
-
-	<div class="row featurette">
-		<div class="col-md-7">
-			<h2 class="featurette-heading">
-				USER3 의 블로그
-			</h2>
-			<p class="lead">Donec ullamcorper nulla non metus auctor
-				fringilla. Vestibulum id ligula porta felis euismod semper. Praesent
-				commodo cursus magna, vel scelerisque nisl consectetur. Fusce
-				dapibus, tellus ac cursus commodo.</p>
-		</div>
-		<div class="col-md-5">
-			<svg
-				class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-				width="500" height="300" xmlns="http://www.w3.org/2000/svg"
-				preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
-				aria-label="Placeholder: 500x300">
-				<title>Placeholder</title><rect width="100%" height="100%"
-					fill="#eee"></rect>
-				<text x="50%" y="50%" fill="#aaa" dy=".3em">500x300</text></svg>
-		</div>
-	</div>
-
-	<hr class="featurette-divider">
-
-	<!-- /END THE FEATURETTES -->
+	</c:forEach>
 </div>
 
-
+<!-- 페이지네이션 -->
+<iot:pagination pageInfo="${pi}" />

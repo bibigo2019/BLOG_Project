@@ -1,24 +1,34 @@
 package edu.autocar.blogs.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.autocar.blogs.model.BlogsVO;
+import edu.autocar.blogs.model.PageInfo;
+import edu.autocar.blogs.service.BlogsService;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
 public class BlogsController {
-	/*
-	 * @Autowired SampleService service;
-	 */
+	
+	@Autowired 
+	BlogsService service;
+	 
 	@GetMapping("/")
-	public String main(Model model) throws Exception {
+	public String list(Model model, @RequestParam(value="page", defaultValue="1") int page) throws Exception {
+		PageInfo<BlogsVO> pi = service.getPage(page);
+		log.info(pi.toString());
+		model.addAttribute("pi",pi);
+		
 		return "blogs/list";
 	}
-	
+
 	@GetMapping("/{userId}/list")
-	public String list(Model model) throws Exception {
+	public String view(Model model) throws Exception {
 		return "blogs/view";
 	}
 }
