@@ -18,8 +18,7 @@ $(function(){
 			<i class="fas fa-user"></i> 사용자 정보
 		</h2>
 		<div class="my-1">사용자 ID : 
-			<img src="${contextPath}/avata/${memberVO.memberId}"
-				class="rounded-circle avata-sm">
+			<img src="${contextPath}/avata/${memberVO.memberId}" class="rounded-circle avata-sm">
 			${memberVO.memberId}</div>
 		<div class="my-1">이름 : ${memberVO.name}</div>
 		<div class="my-1">이메일 : ${memberVO.email}</div>

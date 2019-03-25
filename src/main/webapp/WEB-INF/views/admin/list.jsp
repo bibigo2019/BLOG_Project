@@ -29,8 +29,7 @@ $(function(){
 </h2>
 <div class="float-left">
 	<input type="checkbox" id="check-all"/> <label>전체</label>
-	<button class="btn btn-danger btn-sm check-delete delete"
-			data-mode="multiple">
+	<button class="btn btn-danger btn-sm check-delete delete" data-mode="multiple">
 		<i class="fas fa-user-times"></i> 선택 삭제
 	</button>
 </div>

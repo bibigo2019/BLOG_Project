@@ -1,16 +1,18 @@
 package edu.autocar.member.controller;
 
+import java.io.InputStream;
+
+import javax.servlet.ServletContext;
 import javax.validation.Valid;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -69,6 +71,9 @@ public class MemberController {
 		return "member/join_success";
 	}
 	
+	@Autowired
+	ServletContext context;
+	
 	@GetMapping("/avata/{memberId}")
 	@ResponseBody
 	public ResponseEntity<byte[]> getAvata(@PathVariable String memberId) throws Exception {
@@ -78,8 +83,15 @@ public class MemberController {
 		try {
 			MemberVO memberVO = service.getMember(memberId);
 			images = memberVO.getAvata();
+			
+			if(images == null) {
+				InputStream in = context.getResourceAsStream("resources/images/anonymous.png");
+				images = IOUtils.toByteArray(in);
+			}
+			
 		} catch (Exception e) {
 			status = HttpStatus.NOT_FOUND;
+			log.error("[ERROR]",e);
 		}
 		final HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.IMAGE_JPEG);

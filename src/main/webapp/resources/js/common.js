@@ -19,27 +19,21 @@ $.fn.deletePanel = function(opt){
 	var password = self.find(':password');
 	var triger = $(opt.triger);
 	var url;
-	
-	triger.click(function(){
+	var items = [];
+	triger.click(function() {
 		var userId = $(this).data('member-id');
 		//특정인 제거
-		
+		console.log(userId);
 		if(userId){
-			console.log(userId);
 			url = opt.url.replace('\{member-id\}', userId );			
 		}
 		else {
 			//선택 삭제
 			if($(this).data('mode') == 'multiple') {
-				var items = [];
 				$(opt.multiple).each(function(){
+					console.log($(this).val());
 					items.push($(this).val()); //선택된 사용자 ID 배열에 추가
 				});
-				
-				url = opt.url.replace('delete/0','multi_delete?');	
-				
-				//url = url + items[0];
-				//console.log(url);
 			} 
 			//view 페이지에서 삭제
 			else {
@@ -59,19 +53,36 @@ $.fn.deletePanel = function(opt){
 		e.preventDefault();
 		if(!confirm("삭제할까요?")) return;
 		
-		//params = $.extend(params, {password })
+		console.log(items);
 		
-		console.log(url + '?password=' + password.val());
-		
-		//Ajax 로 delete 요청
-		axios.delete(url + '?password=' + password.val())
-			.then(function(obj){
-				if(obj.data.result == 'success'){
-					location = opt.moveUrl;
-				} else {
-					alert(obj.data.message);
-				}
-			})
-			.catch(console.log);
+		if(items.length == 0) {
+			//Ajax 로 delete 요청
+			axios.delete(url + '?password=' + password.val())
+				.then(function(obj){
+					if(obj.data.result == 'success'){
+						location = opt.moveUrl;
+					}
+					else {
+						alert(obj.data.message);						
+					}
+				})
+				.catch(console.log);
+		}
+		else {
+			items.forEach(function(element) {
+				url = opt.url.replace('\{member-id\}', element );
+				
+				//Ajax 로 delete 요청
+				axios.delete(url + '?password=' + password.val())
+					.then(function(obj){
+						if(obj.data.result != 'success'){
+							alert(obj.data.message);
+						}
+					})
+					.catch(console.log);
+			});
+			
+			location = opt.moveUrl;
+		}
 	});
 }

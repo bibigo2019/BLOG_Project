@@ -62,6 +62,19 @@
 		WHERE member_id=#{memberId}
 	</delete>
 	
+	<delete id="deleteBlog">
+		DELETE FROM BLOG WHERE BLOG_ID = #{ blogId }
+	</delete>
+	
+	<delete id="deletePost">
+		DELETE FROM POST WHERE BLOG_ID = #{ blogId }
+	</delete>
+	
+	<delete id="deleteCmt">
+		DELETE FROM COMMENTS WHERE BLOG_ID = #{ blogId }
+	</delete>
+	
+	
 	<update id="updateByAdmin" parameterType="MemberVO">
 		UPDATE member SET
 			admin = #{admin},

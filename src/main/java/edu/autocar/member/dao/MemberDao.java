@@ -13,5 +13,9 @@ public interface MemberDao {
 	int insert(MemberVO member) throws Exception;
 	int update(MemberVO member) throws Exception;
 	int delete(String memberId) throws Exception;
+	int deleteBlog(int blogId) throws Exception;
+	int deletePost(int blogId) throws Exception;
+	int deleteCmt(int blogId) throws Exception;
+	
 	int updateByAdmin(MemberVO member) throws Exception;
 }

@@ -11,7 +11,7 @@
 			<div class="form-group">
 				<form:hidden path="memberId" />
 				<label for="userId">사용자 ID </label>
-				<p class="form-control-static">${memberVO.memberId}</p>
+				<input class="form-control" value="${memberVO.memberId}" disabled>
 			</div>
 			<div class="form-group">
 				<label for="password">비밀번호</label>
@@ -20,13 +20,13 @@
 			</div>
 			<div class="form-group">
 				<form:hidden path="name" class="form-control" />
-				<label for="name">이름</label>
-				<p class="form-control-static">${memberVO.name}</p>
+				<label for="name">이름</label> 
+				<input class="form-control" value="${memberVO.name}" disabled>
 			</div>
 			<div class="mb-3">
-				<img src="${contextPath}/avata/${memberVO.memberId}">
-				<label for="avataImage">아바타 이미지</label>
-				<input type="file" name="avataImage"/>
+				<label for="avataImage">아바타 이미지</label><br>
+				<img src="${contextPath}/avata/${memberVO.memberId}" width="50">
+				&nbsp;&nbsp;&nbsp;<input type="file" name="avataImage"/>
 			</div>
 			<div class="form-group">
 				<label for="admin">관리자 권한 Y/N</label>
