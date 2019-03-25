@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.autocar.blogs.model.BlogsVO;
@@ -33,8 +34,8 @@ public class BlogsController {
 	}
 
 	@GetMapping("/{blogId}/list")
-	public String view(Model model, @RequestParam(value="page", defaultValue="1") int page) throws Exception {
-		PageInfo<PostVO> pi = postService.getPage(page);
+	public String view(@PathVariable int blogId, Model model, @RequestParam(value="page", defaultValue="1") int page) throws Exception {
+		PageInfo<PostVO> pi = postService.getPage(blogId, page);
 		log.info(pi.toString());
 		model.addAttribute("pi",pi);
 		

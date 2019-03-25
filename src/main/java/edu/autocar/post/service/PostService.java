@@ -10,5 +10,5 @@ public interface PostService {
 	int updatePost(PostVO postVO) throws Exception;
 	int deletePost(int blogId, int postId) throws Exception;
 	
-	PageInfo<PostVO> getPage(int page) throws Exception;
+	PageInfo<PostVO> getPage(int blogId, int page) throws Exception;
 }
