@@ -48,7 +48,7 @@ div .carousel-caption:hover {
 			<div data-url="${contextPath}/${data.blogId}/view/${data.postId}" class="carousel-item <c:if test="${ status.count == 1 }">active</c:if>">
 				<div class="carousel-caption">
 					<h1>${ data.postTitle }</h1>
-					<p>${ data.summary } Summary좀 추가해주실래요?</p>
+					<p>by. ${ data.blogTitle } (@${ data.memberId })</p>
 				</div>
 				<img src="${contextPath}/image/${ data.blogId }" alt="">
 			</div>

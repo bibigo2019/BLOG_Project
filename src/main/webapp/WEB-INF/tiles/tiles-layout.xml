@@ -34,6 +34,17 @@
 		<put-attribute name="body" value="/WEB-INF/views/blogs/{1}.jsp" />
 	</definition>
 	
+	
+	<!-- 포스트용 -->
+	<definition name="post/edit.view" template="/WEB-INF/views/layouts/post_template.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/layouts/default/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/views/layouts/default/menu.jsp" />
+		<put-attribute name="titles" value="/WEB-INF/views/post/tempTitle.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/post/edit.jsp" />
+		<put-attribute name="comments" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/layouts/default/footer.jsp" />
+	</definition>
+	
 	<!-- 포스트용 -->
 	<definition name="post/*" template="/WEB-INF/views/layouts/post_template.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/layouts/default/header.jsp" />
@@ -42,7 +53,6 @@
 		<put-attribute name="body" value="/WEB-INF/views/post/{1}.jsp" />
 		<put-attribute name="comments" value="/WEB-INF/views/post/comment.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/layouts/default/footer.jsp" />
-		
 	</definition>
 
 	<!-- 회원가입/로그인/회원정보 -->

@@ -1,13 +1,15 @@
 package edu.autocar.post.service;
 
+import java.awt.Image;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.autocar.blogs.model.BlogsVO;
+import edu.autocar.cmmn.domain.FileInfo;
 import edu.autocar.cmmn.domain.PageInfo;
 import edu.autocar.post.dao.PostDao;
+import edu.autocar.post.model.FileVO;
 import edu.autocar.post.model.PostVO;
 
 @Repository
@@ -51,4 +53,18 @@ public class PostServiceImpl implements PostService {
 				page, PER_PAEGE_COUNT, list);
 	}
 
+	@Override
+	public FileVO selectFile(int postId) throws Exception {
+		return dao.selectFile(postId);
+	}
+
+	@Override
+	public int insertFile(FileVO file) throws Exception {
+		return dao.insertFile(file);
+	}
+	@Override
+	public void deleteFile(int postId) throws Exception {
+		dao.deleteFile(postId);
+	}
+	
 }

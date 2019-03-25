@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import edu.autocar.post.model.FileVO;
 import edu.autocar.post.model.PostVO;
 
 public interface PostDao {
@@ -16,4 +17,11 @@ public interface PostDao {
 	//페이지네이션에 필요한 메서드
 	int count() throws Exception;
 	List<PostVO> getPage(@Param("blogId") int blogId, @Param("start") int start, @Param("end") int end) throws Exception;
+	
+	FileVO selectFile(@Param("postId") int postId) throws Exception;
+	
+	int insertFile(FileVO fileVO) throws Exception;
+	
+	void deleteFile(@Param("postId") int postId) throws Exception;
+	
 }

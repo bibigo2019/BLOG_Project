@@ -63,4 +63,27 @@
 		WHERE SEQ BETWEEN #{start} AND #{end}
 		ORDER BY POST_ID DESC
 	</select>
+	
+	<select id="selectFile" resultType="FileVO">
+		SELECT * FROM FILES WHERE POST_ID = #{ postId }
+	</select>
+	
+	<select id="deleteFile">
+		DELETE FROM FILES WHERE POST_ID = #{ postId }
+	</select>
+	
+	<insert id="insertFile" parameterType="FileVO">
+		INSERT INTO FILES(FILE_ID,POST_ID,TYPE,NAME,CONTENT,REG_DATE,UPDATE_DATE)
+		VALUES(
+			FILE_SEQ.NEXTVAL
+			, #{ postId }
+			, 'F'
+			, #{ name }
+			, #{ content, jdbcType=BLOB}
+			, SYSDATE
+			, SYSDATE
+		)
+	</insert>
+	
+	
 </mapper>
