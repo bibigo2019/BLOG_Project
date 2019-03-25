@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class BlogsVO {
 	private int blogId;
 	private String title;
+	private byte[] img;
 	private Date regDate;
-	private Date updateDate;	
+	private Date updateDate;
 }

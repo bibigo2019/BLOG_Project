@@ -13,13 +13,13 @@
 
 <div class="container">
 	<header class="blog-header py-3">
-		<div
+		<%-- <div
 			class="row flex-nowrap justify-content-between align-items-center">
 			<div class="col-4 pt-1">
-				<a class="text-muted" href="#">Subscribe</a>
+				<a class="text-muted" href="#"></a>
 			</div>
 			<div class="col-4 text-center">
-				<a class="blog-header-logo text-dark" href="#">Large</a>
+				<a class="blog-header-logo text-dark" href="#"></a>
 			</div>
 			<div class="col-4 d-flex justify-content-end align-items-center">
 				<a class="text-muted" href="#"> <svg
@@ -31,7 +31,7 @@
 						<path d="M21 21l-5.2-5.2"></path></svg>
 				</a> <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
 			</div>
-		</div>
+		</div> --%>
 	</header>
 
 	<div class="nav-scroller py-1 mb-2">
@@ -41,13 +41,11 @@
 	</div>
 
 
-	<div class="jumbotron p-2 p-md-5 text-white rounded bg-dark ">
+	<div class="jumbotron p-2 p-md-5 text-white rounded bg-dark "
+		var="blogsVO">
 		<div class="col-md-6 px-0">
-			<h1 class="display-4 font-italic">Title of a longer featured
-				blog post</h1>
-			<p class="lead my-3">Multiple lines of text that form the lede,
-				informing new readers quickly and efficiently about what’s most
-				interesting in this post’s contents.</p>
+			<h1 class="display-4 font-italic">${blogsVO.title}</h1>
+			<p class="lead my-3">${blogsVO.summary}</p>
 			<p class="lead mb-0">
 				<a href="#" class="text-white font-weight-bold">Continue
 					reading...</a>
@@ -112,6 +110,12 @@
 			<i class="fas fa-utensils"></i> 포스트 목록
 		</h2>
 	</div>
+
+	<div class="text-right">
+		<a href="write?page=${pi.page}"><i class="fas fa-edit"></i> 포스트 쓰기</a>
+		(총 : ${pi.totalCount} 건)
+	</div>
+	 </br>
 
 	<!-- list -->
 	<div class="list-group">
