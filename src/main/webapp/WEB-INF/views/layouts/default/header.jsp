@@ -36,10 +36,10 @@
 			</c:if>
 			<c:if test="${not empty USER}">
 				<li class="nav-item"><a class="nav-link"
-					href="${contextPath}/member/view">
-						<img src="${contextPath}/member/avata/${USER.userId}"
+					href="${contextPath}/view">
+						<img src="${contextPath}/avata/${USER.memberId}"
 						class="rounded-circle avata-sm">
-						${USER.userId}
+						${USER.memberId}
 				</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="${contextPath}/logout"> <i class="fas fa-sign-out-alt"></i>
