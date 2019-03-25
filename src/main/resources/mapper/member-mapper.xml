@@ -51,10 +51,11 @@
 
 	<update id="update" parameterType="MemberVO">
 		UPDATE member SET
+		<if test=" avata != null and avata != ''"> avata = #{avata, jdbcType=BLOB}, </if>
 		email = #{email},
 		phone = #{phone},
 		address = #{address}
-		WHERE member_id=#{memberId} and password=#{password}
+		WHERE member_id=#{memberId}
 	</update>
 
 	<delete id="delete">
@@ -78,7 +79,7 @@
 	<update id="updateByAdmin" parameterType="MemberVO">
 		UPDATE member SET
 			admin = #{admin},
-			avata = #{avata, jdbcType=BLOB},
+			<if test=" avata != null and avata != ''"> avata = #{avata, jdbcType=BLOB},</if>
 			email = #{email},
 			phone = #{phone},
 			address = #{address}
