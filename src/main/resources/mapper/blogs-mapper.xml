@@ -6,6 +6,44 @@
 		SELECT * FROM BLOG
 		WHERE BLOG_ID=#{blogId}
 	</select>
+	
+	<select id="selectRandomBlogs" resultType="BlogPostVO">
+		SELECT  B.BLOG_ID
+	      , B.TITLE BLOG_TITLE
+			, B.IMG
+	      , C.NAME
+	      , C.MEMBER_ID
+	      , C.EMAIL      
+			FROM (
+	    SELECT ROUND(DBMS_RANDOM.VALUE(1, 200),0) AS NUMS
+	    	, A.*
+	    	FROM BLOG A
+	      ORDER BY NUMS
+	    ) B, MEMBER C
+	    WHERE B.BLOG_ID = C.BLOG_ID
+	</select>
+	
+	<select id="selectRandomPosts" parameterType="int" resultType="BlogPostVO">
+		SELECT  A.BLOG_ID
+			, A.POST_ID
+			, A.TITLE POST_TITLE
+      		, B.TITLE BLOG_TITLE
+			, A.CONTENT
+			, B.IMG
+			, C.NAME
+			, C.MEMBER_ID
+			, C.EMAIL      
+		FROM
+		(
+			SELECT ROUND(DBMS_RANDOM.VALUE(1, 200),0) AS NUMS
+			, A.* FROM POST A
+			ORDER BY NUMS
+		) A, BLOG B, MEMBER C
+		WHERE A.BLOG_ID = B.BLOG_ID
+    	AND A.BLOG_ID = C.BLOG_ID
+		AND ROWNUM <![CDATA[<=]]> #{ num }
+	</select>
+	
 	<insert id="insertBlogs" parameterType="BlogsVO" useGeneratedKeys="true"
 		keyColumn = "blog_id" keyProperty="blogId">
 		INSERT INTO BLOG(BLOG_ID, TITLE, REG_DATE, UPDATE_DATE)
@@ -42,4 +80,5 @@
 		WHERE SEQ BETWEEN #{start} AND #{end}
 		ORDER BY blog_id DESC
 	</select>
+	
 </mapper>

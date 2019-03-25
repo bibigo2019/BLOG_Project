@@ -23,7 +23,7 @@
 		  if(confirm){
 			  $.ajax({ 
 				url : `${contextPath}/${blogId}/delete/${postId}`, 
-				type : 'delete', 
+				type : 'delete',
 				dataType : 'json', 
 				cache : false, 
 				success : function(data) {

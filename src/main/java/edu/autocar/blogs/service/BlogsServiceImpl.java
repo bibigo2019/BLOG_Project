@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.autocar.blogs.dao.BlogsDao;
+import edu.autocar.blogs.model.BlogPostVO;
 import edu.autocar.blogs.model.BlogsVO;
 import edu.autocar.cmmn.domain.PageInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -39,5 +40,22 @@ public class BlogsServiceImpl implements BlogsService {
 	public void insertBlogs(BlogsVO blogsVO) throws Exception {
 		dao.insertBlogs(blogsVO);
 	}
+
+	@Override
+	public List<BlogPostVO> selectRandomPosts(int num) throws Exception {
+		return dao.selectRandomPosts(num);
+	}
+	
+	@Override
+	public List<BlogPostVO> selectRandomBlogs() throws Exception {
+		return dao.selectRandomBlogs();
+	}
+
+	@Override
+	public BlogsVO selectBlogInfo(int blogId) throws Exception {
+		return dao.selectBlogs(blogId);
+	}
+	
+	
 
 }
