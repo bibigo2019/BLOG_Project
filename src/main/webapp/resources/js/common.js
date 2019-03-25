@@ -60,7 +60,7 @@ $.fn.deletePanel = function(opt){
 			axios.delete(url + '?password=' + password.val())
 				.then(function(obj){
 					if(obj.data.result == 'success'){
-						location = opt.moveUrl;
+						location.href = opt.moveUrl;
 					}
 					else {
 						alert(obj.data.message);						
@@ -82,7 +82,7 @@ $.fn.deletePanel = function(opt){
 					.catch(console.log);
 			});
 			
-			location = opt.moveUrl;
+			location.href = opt.moveUrl;
 		}
 	});
 }

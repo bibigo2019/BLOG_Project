@@ -21,7 +21,6 @@
 		<tiles:insertAttribute name="titles" />
 	</div>
 	<tiles:insertAttribute name="body" />
-	<tiles:insertAttribute name="comments" />
 	<tiles:insertAttribute name="footer" />
 </body>
 </html>

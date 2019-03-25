@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import edu.autocar.cmmn.domain.FileInfo;
+import edu.autocar.comments.domain.Comments;
+import edu.autocar.comments.domain.CommentsInfo;
+import edu.autocar.comments.service.CommentsService;
 import edu.autocar.post.model.FileVO;
 import edu.autocar.post.model.PostVO;
 import edu.autocar.post.service.PostService;
@@ -33,12 +35,18 @@ public class PostController {
 	@Autowired
 	PostService service;
 	
+	@Autowired
+	CommentsService cmtService;
+	
 	@GetMapping("/{blogId}/view/{postId}")
 	public String view(HttpServletRequest request, @PathVariable int blogId, @PathVariable int postId, Model model) throws Exception {
 		
 		PostVO vo = service.selectPost(blogId,postId);
 		
 		FileVO file = service.selectFile(postId);
+		
+		CommentsInfo<Comments> ci = cmtService.getCommentsByPostId(postId);
+		model.addAttribute("ci", ci);
 		
 		model.addAttribute("file",file);
 		model.addAttribute("post",vo);
@@ -91,9 +99,10 @@ public class PostController {
 		}
 		service.updatePost(postVO);
 		service.deleteFile(postId);
-		
-		FileVO vo = new FileVO(0, postId, "", file.getOriginalFilename(), file.getBytes(), null,null);
-		service.insertFile(vo);
+		if(!file.isEmpty()) {
+			FileVO vo = new FileVO(0, postId, "", file.getOriginalFilename(), file.getBytes(), null,null);
+			service.insertFile(vo);
+		}
 		
 		return "redirect:/{blogId}/view/"+postId;
 	}

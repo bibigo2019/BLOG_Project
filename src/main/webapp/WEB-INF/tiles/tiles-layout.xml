@@ -51,7 +51,6 @@
 		<put-attribute name="menu" value="/WEB-INF/views/layouts/default/menu.jsp" />
 		<put-attribute name="titles" value="/WEB-INF/views/post/tempTitle.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/post/{1}.jsp" />
-		<put-attribute name="comments" value="/WEB-INF/views/post/comment.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/layouts/default/footer.jsp" />
 	</definition>
 

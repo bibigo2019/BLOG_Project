@@ -109,7 +109,8 @@ public class AdminMemberController {
 	public ResponseEntity<ResultMsg> delete(
 				@PathVariable String memberId,
 				@RequestParam(value = "password") String password) throws Exception {
-		System.out.println(memberId);
+		
+		
 		if(service.delete(memberId, password)) {
 			return ResultMsg.response("success", "삭제했습니다.");
 		} else {

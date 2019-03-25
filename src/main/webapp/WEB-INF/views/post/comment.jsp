@@ -14,7 +14,18 @@
 </style>
 
 <div class="container">
-	<div class="container">
+	<div class="row">
+		<div class="col-md-12 mb-2">
+			<form id="commentForm" method="post">
+				<label for="comment">comment <i class="fa fa-comments"></i></label>
+				<textarea id="comment" style="width:100%" name="comment" rows="2" cols=""></textarea>
+				<div style="float:right;">
+				<button type="submit">write</button>
+				</div>
+			</form>	
+		</div>
+	</div>
+	
 	<div class="card">
 	    <div class="card-body">
 	        <div class="row">
@@ -45,5 +56,4 @@
             </div>
 	    </div>
 	</div>
-</div>
 </div>

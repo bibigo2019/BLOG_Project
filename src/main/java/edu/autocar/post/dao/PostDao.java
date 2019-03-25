@@ -18,7 +18,6 @@ public interface PostDao {
 	int count(int blogId) throws Exception;
 	List<PostVO> getPage(@Param("blogId") int blogId, @Param("start") int start, @Param("end") int end) throws Exception;
 	
-<<<<<<< HEAD
 	//조회수 증가 메서드
 	int increaseReadCnt(int postId) throws Exception;
 	
@@ -30,14 +29,5 @@ public interface PostDao {
 	int insertFile(FileVO fileVO) throws Exception;
 	
 	void deleteFile(@Param("postId") int postId) throws Exception;
-	
-	
-=======
-	FileVO selectFile(@Param("postId") int postId) throws Exception;
-	
-	int insertFile(FileVO fileVO) throws Exception;
-	
-	void deleteFile(@Param("postId") int postId) throws Exception;
->>>>>>> branch 'master' of https://github.com/bibigo2019/BLOG_Project.git
 	
 }

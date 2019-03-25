@@ -23,8 +23,6 @@
 
 <div class="container">
 	<div class="row">
-		<div class=" center col-md-12 md-3">
-			<p>TEMP TITLE</p>
-		</div>
+		<img height="200" style="width:100%" src="${ contextPath }/resources/images/blog.jpg"/>
 	</div>
 </div>

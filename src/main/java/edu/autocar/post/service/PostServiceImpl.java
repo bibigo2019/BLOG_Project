@@ -1,15 +1,11 @@
 package edu.autocar.post.service;
 
-import java.awt.Image;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-<<<<<<< HEAD
-=======
-import edu.autocar.cmmn.domain.FileInfo;
->>>>>>> branch 'master' of https://github.com/bibigo2019/BLOG_Project.git
+//github.com/bibigo2019/BLOG_Project.git
 import edu.autocar.cmmn.domain.PageInfo;
 import edu.autocar.post.dao.PostDao;
 import edu.autocar.post.model.FileVO;
@@ -62,21 +58,6 @@ public class PostServiceImpl implements PostService {
 		return dao.selectTopPost(blogId, num);
 	}
 	
-	@Override
-	public FileVO selectFile(int postId) throws Exception {
-		return dao.selectFile(postId);
-	}
-
-	@Override
-	public int insertFile(FileVO file) throws Exception {
-		return dao.insertFile(file);
-	}
-	@Override
-	public void deleteFile(int postId) throws Exception {
-		dao.deleteFile(postId);
-	}
-	
-
 	@Override
 	public FileVO selectFile(int postId) throws Exception {
 		return dao.selectFile(postId);

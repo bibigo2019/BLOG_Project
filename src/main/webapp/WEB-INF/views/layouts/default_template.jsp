@@ -17,7 +17,7 @@
 </head>
 <body>
 	<tiles:insertAttribute name="header" />
-	<div style="margin-top:5rem;">
+	<div style="margin-top:3rem;">
 		<tiles:insertAttribute name="body" />
 	</div>	
 	<tiles:insertAttribute name="footer" />

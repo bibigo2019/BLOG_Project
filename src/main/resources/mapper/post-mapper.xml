@@ -71,7 +71,6 @@
 		ORDER BY POST_ID DESC
 	</select>
 	
-<<<<<<< HEAD
 	<update id="increaseReadCnt" parameterType="int">
 		UPDATE POST 
 		SET	read_cnt = read_cnt + 1 WHERE post_id = #{postId}
@@ -98,28 +97,5 @@
 			, SYSDATE
 		)
 	</insert>
-=======
-	<select id="selectFile" resultType="FileVO">
-		SELECT * FROM FILES WHERE POST_ID = #{ postId }
-	</select>
-	
-	<select id="deleteFile">
-		DELETE FROM FILES WHERE POST_ID = #{ postId }
-	</select>
-	
-	<insert id="insertFile" parameterType="FileVO">
-		INSERT INTO FILES(FILE_ID,POST_ID,TYPE,NAME,CONTENT,REG_DATE,UPDATE_DATE)
-		VALUES(
-			FILE_SEQ.NEXTVAL
-			, #{ postId }
-			, 'F'
-			, #{ name }
-			, #{ content, jdbcType=BLOB}
-			, SYSDATE
-			, SYSDATE
-		)
-	</insert>
-	
->>>>>>> branch 'master' of https://github.com/bibigo2019/BLOG_Project.git
-	
+
 </mapper>

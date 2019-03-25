@@ -12,9 +12,7 @@
 </style>
 
 <div class="container">
-<<<<<<< HEAD
 	<div class="jumbotron p-2 p-md-5 text-white rounded bg-dark " var="blogsVO">
-=======
 	<header class="blog-header py-3">
 		<div class="row flex-nowrap justify-content-between align-items-center">
 			<div class="col-4 pt-1">
@@ -44,7 +42,6 @@
 
 
 	<div class="jumbotron p-2 p-md-5 text-white rounded bg-dark ">
->>>>>>> branch 'master' of https://github.com/bibigo2019/BLOG_Project.git
 		<div class="col-md-6 px-0">
 			<h1 class="display-4 font-italic">${blogsVO.title}</h1>
 			<p class="lead mb-0">

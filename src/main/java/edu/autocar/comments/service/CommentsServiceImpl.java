@@ -16,13 +16,12 @@ public class CommentsServiceImpl implements CommentsService{
 	@Autowired
 	CommentsDao dao;
 
-	/*
 	@Transactional
 	@Override
-	public void create(Comments comments) throws Exception {
-		dao.insert(comments);
+	public int create(Comments comments) throws Exception {
+		return dao.insert(comments);
 	}
-	*/
+	
 
 	@Override
 	public CommentsInfo<Comments> getCommentsByPostId(int postId) throws Exception {

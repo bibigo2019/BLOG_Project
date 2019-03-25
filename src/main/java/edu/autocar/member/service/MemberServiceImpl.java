@@ -63,15 +63,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	@Transactional
 	public boolean delete(String memberId, String password) throws Exception {
 		if (!checkAdminPassword(password))
 			return false;
 		int res = 0;
 		int blogId = getMember(memberId).getBlogId();
-		res += dao.delete(memberId);
 		res += dao.deleteCmt(blogId);
 		res += dao.deletePost(blogId);
+		res += dao.delete(memberId);
 		res += dao.deleteBlog(blogId);
 		
 		return res > 0;
@@ -141,4 +140,5 @@ public class MemberServiceImpl implements MemberService {
 
 		return adminPassword.equals(password);
 	}
+
 }
