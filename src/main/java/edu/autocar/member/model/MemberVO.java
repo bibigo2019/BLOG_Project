@@ -32,5 +32,9 @@ public class MemberVO {
 	public MemberVO() {
 		admin = 'N';
 	}
+	
+	public boolean adminIs() {
+		return admin == 'Y';
+	}
 
 }

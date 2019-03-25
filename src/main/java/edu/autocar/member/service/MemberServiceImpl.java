@@ -29,7 +29,13 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public MemberVO checkPassword(String memberId, String password) throws Exception {
-		// TODO Auto-generated method stub
+		MemberVO user = dao.findById(memberId);
+		if (user != null) { // 사용자 ID가 존재하는 경우
+			password = SHA256Util.getEncrypt(password, user.getSalt());
+			if (password.equals(user.getPassword()))
+				return user;
+		}
+		// ID가 없거나 비밀번호가 다른 경우
 		return null;
 	}
 

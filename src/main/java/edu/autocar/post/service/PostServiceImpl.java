@@ -39,11 +39,11 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public PageInfo<PostVO> getPage(int page) throws Exception {
+	public PageInfo<PostVO> getPage(int blogId, int page) throws Exception {
 		int start = (page-1)*PER_PAEGE_COUNT;
 		int end = start + PER_PAEGE_COUNT;
 		int totalCount = dao.count();
-		List<PostVO> list = dao.getPage(start, end);
+		List<PostVO> list = dao.getPage(blogId, start, end);
 		
 		return new PageInfo<>(
 				totalCount,
