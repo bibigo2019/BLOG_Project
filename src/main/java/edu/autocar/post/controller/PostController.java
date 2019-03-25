@@ -17,8 +17,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import edu.autocar.cmmn.domain.FileInfo;
+import edu.autocar.post.model.FileVO;
 import edu.autocar.post.model.PostVO;
 import edu.autocar.post.service.PostService;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +38,9 @@ public class PostController {
 		
 		PostVO vo = service.selectPost(blogId,postId);
 		
+		FileVO file = service.selectFile(postId);
 		
+		model.addAttribute("file",file);
 		model.addAttribute("post",vo);
 		model.addAttribute("blogId",blogId);
 		model.addAttribute("postId",postId);
@@ -67,13 +73,16 @@ public class PostController {
 	public String edit(PostVO postVO, @PathVariable int blogId, @PathVariable int postId, Model model) throws Exception {
 		
 		postVO = service.selectPost(blogId,postId);
+		
 		model.addAttribute("post",postVO);
 		
-		return "post/edit";
+		return "post/edit.view";
 	}
 	
 	@PostMapping("/{blogId}/edit/{postId}")
-	public String edit( @PathVariable int blogId, @PathVariable int postId, @Valid PostVO postVO, BindingResult result) throws Exception {
+	public String edit( @PathVariable int blogId, @PathVariable int postId, @Valid PostVO postVO,
+			@RequestParam("file") MultipartFile file,
+			BindingResult result) throws Exception {
 		
 		postVO.setBlogId(blogId);
 		if(result.hasErrors()) {
@@ -81,6 +90,10 @@ public class PostController {
 			return "post/edit";
 		}
 		service.updatePost(postVO);
+		service.deleteFile(postId);
+		
+		FileVO vo = new FileVO(0, postId, "", file.getOriginalFilename(), file.getBytes(), null,null);
+		service.insertFile(vo);
 		
 		return "redirect:/{blogId}/view/"+postId;
 	}
@@ -105,5 +118,13 @@ public class PostController {
 		return new ResponseEntity<Map<String, String>>(
 		map, headers, HttpStatus.OK);
 	}
+	
+	@GetMapping("/download/{postId}")
+	public String download(@PathVariable int postId, Model model) throws Exception {
+		//FileInfo fi = service.getFileInfo(imageId);
+		//model.addAttribute("fileInfo", fi);
+		return "download";
+	}
+	
 	
 }

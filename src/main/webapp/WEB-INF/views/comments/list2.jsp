@@ -1,20 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-
-<style>
-	.card {
-		border: none !important;
-		margin-top :10px;
-	}
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 	
-	.card-inner{
-	    margin-left: 4rem;
-	}
+<style>
+.card {
+	border: none !important;
+	margin-top :10px;
+}
+
+.card-inner{
+    margin-left: 4rem;
+}
 </style>
 
 <div class="container">
-	<div class="container">
 	<div class="card">
 	    <div class="card-body">
 	        <div class="row">
@@ -45,5 +43,4 @@
             </div>
 	    </div>
 	</div>
-</div>
 </div>
