@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.autocar.blogs.dao.BlogsDao;
 import edu.autocar.blogs.model.BlogsVO;
-import edu.autocar.blogs.model.PageInfo;
+import edu.autocar.cmmn.domain.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -31,6 +32,12 @@ public class BlogsServiceImpl implements BlogsService {
 				totalCount,
 				(int)Math.ceil(totalCount/(double)PER_PAEGE_COUNT),
 				page, PER_PAEGE_COUNT, list);
+	}
+	
+	@Override
+	@Transactional
+	public void insertBlogs(BlogsVO blogsVO) throws Exception {
+		dao.insertBlogs(blogsVO);
 	}
 
 }

@@ -1,4 +1,4 @@
-package edu.autocar.blogs.model;
+package edu.autocar.cmmn.domain;
 
 import java.util.List;
 

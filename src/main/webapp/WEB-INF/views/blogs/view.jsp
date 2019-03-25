@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib tagdir="/WEB-INF/tags/util" prefix="iot"%>
 <style>
 .jumbotron {
 	background-image: url(${contextPath}/resources/images/demo_1.jpg);
@@ -104,69 +105,33 @@
 		</div>
 	</div>
 
+	<hr />
+
+	<div>
+		<h2 class="font-weight-bold">
+			<i class="fas fa-utensils"></i> 포스트 목록
+		</h2>
+	</div>
+
 	<!-- list -->
 	<div class="list-group">
 		<ul class="list-group list-group-flush">
-			<a href="#"
-				class="list-group-item list-group-item-action flex-column align-items-start ">
-				<div class="d-flex w-100 justify-content-between ">
-					<h4 class="mb-1 font-weight-bold">List group item heading</h4>
-					<small>3 days ago</small>
-				</div>
-				<p class="mb-4">Donec id elit non mi porta gravida at eget
-					metus. Maecenas sed diam eget risus varius blandit.</p> <small>Donec
-					id elit non mi porta.</small>
-			</a>
-			<a href="#"
-				class="list-group-item list-group-item-action flex-column align-items-start">
-				<div class="d-flex w-100 justify-content-between">
-					<h4 class="mb-1 font-weight-bold">List group item heading</h4>
-					<small class="text-muted">3 days ago</small>
-				</div>
-				<p class="mb-4">Donec id elit non mi porta gravida at eget
-					metus. Maecenas sed diam eget risus varius blandit.</p> <small
-				class="text-muted">Donec id elit non mi porta.</small>
-			</a>
-			<a href="#"
-				class="list-group-item list-group-item-action flex-column align-items-start">
-				<div class="d-flex w-100 justify-content-between">
-					<h4 class="mb-1 font-weight-bold">List group item heading</h4>
-					<small class="text-muted">3 days ago</small>
-				</div>
-				<p class="mb-4">Donec id elit non mi porta gravida at eget
-					metus. Maecenas sed diam eget risus varius blandit.</p> <small
-				class="text-muted">Donec id elit non mi porta.</small>
-			</a>
-			<a href="#"
-				class="list-group-item list-group-item-action flex-column align-items-start">
-				<div class="d-flex w-100 justify-content-between">
-					<h4 class="mb-1 font-weight-bold">List group item heading</h4>
-					<small class="text-muted">3 days ago</small>
-				</div>
-				<p class="mb-4">Donec id elit non mi porta gravida at eget
-					metus. Maecenas sed diam eget risus varius blandit.</p> <small
-				class="text-muted">Donec id elit non mi porta.</small>
-			</a>
-
+			<c:forEach var="postVO" items="${pi.list}">
+				<a href="../${postVO.blogId}/view/${postVO.postId}"
+					class="list-group-item list-group-item-action flex-column align-items-start">
+					<div class="d-flex w-100 justify-content-between">
+						<h4 class="mb-1 font-weight-bold">${postVO.title}</h4>
+						<small class="text-muted"> 등록일 : <fmt:formatDate
+								value="${postVO.regDate}" pattern="yyyy-MM-dd" />
+						</small>
+					</div>
+					<p class="mb-4">포스트 내용이 들어갈 자리입니다.</p>
+				</a>
+			</c:forEach>
 		</ul>
 	</div>
-
-	<!-- pagenation -->
-	<nav aria-label="Page navigation">
-		<ul class="pagination justify-content-center p-md-4">
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span
-					class="sr-only">Previous</span>
-			</a></li>
-			<li class="page-item active"><a class="page-link" href="#">1</a></li>
-			<li class="page-item "><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#">4</a></li>
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
-					class="sr-only">Next</span>
-			</a></li>
-		</ul>
-	</nav>
+	<br />
 </div>
 
+<!-- pagenation -->
+<iot:pagination pageInfo="${pi}" />

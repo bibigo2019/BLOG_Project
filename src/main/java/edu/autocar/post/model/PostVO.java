@@ -1,5 +1,7 @@
 package edu.autocar.post.model;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +16,7 @@ public class PostVO {
 	private String title;
 	private String content;
 	private int readCnt;
-	private String regDate;
-	private String updateDate;
+	private Date regDate;
+	private Date updateDate;
 	
 }

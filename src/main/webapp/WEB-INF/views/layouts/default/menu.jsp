@@ -40,8 +40,8 @@
 			<c:if test="${not empty USER}">
 				<li class="nav-item"><a class="nav-link"
 					href="${contextPath}/member/view">
-						<img src="${contextPath}/member/avata/${USER.userId}"
-						class="rounded-circle avata-sm">
+						<%-- <img src="${contextPath}/member/avata/${USER.userId}"
+						class="rounded-circle avata-sm"> --%>
 						${USER.userId}
 				</a></li>
 				<li class="nav-item"><a class="nav-link"

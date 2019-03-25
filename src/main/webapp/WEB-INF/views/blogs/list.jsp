@@ -18,7 +18,6 @@
 .carousel-caption {
 	text-align: right;
 }
-
 </style>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 	<!-- Indicators -->
@@ -139,25 +138,24 @@
 
 	<c:forEach var="blogsVO" items="${pi.list}">
 		<hr class="featurette-divider">
-
-		<div class="row featurette">
-			<div class="col-md-7">
-				<h2 class="featurette-heading">
-					<a href="test/list">${blogsVO.title}</a>
-				</h2>
-				<p class="lead">blog 개요 설명 컬럼 필요 (=> blogsVO.summary)</p>
-			</div>
-			<div class="col-md-5">
-				<svg
-					class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-					width="500" height="300" xmlns="http://www.w3.org/2000/svg"
-					preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
-					aria-label="Placeholder: 500x300" id="temp">
+		<a href="${blogsVO.blogId}/list">
+			<div class="row featurette">
+				<div class="col-md-7">
+					<h2 class="featurette-heading">${blogsVO.title}</h2>
+					<p class="lead">blog 개요 설명 컬럼 필요 (=> blogsVO.summary)</p>
+				</div>
+				<div class="col-md-5">
+					<svg
+						class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+						width="500" height="300" xmlns="http://www.w3.org/2000/svg"
+						preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
+						aria-label="Placeholder: 500x300" id="temp">
 				<title>Placeholder</title><rect width="100%" height="100%"
-						fill="#eee"></rect>
+							fill="#eee"></rect>
 				<text x="50%" y="50%" fill="#aaa" dy=".3em">블로그 메인 이미지</text></svg>
+				</div>
 			</div>
-		</div>
+		</a>
 	</c:forEach>
 </div>
 

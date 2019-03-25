@@ -2,6 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.autocar.blogs.dao.BlogsDao">
+	<select id="selectBlogs" parameterType="int" resultType="BlogsVO">
+		SELECT * FROM BLOG
+		WHERE BLOG_ID=#{blogId}
+	</select>
+	<insert id="insertBlogs" parameterType="BlogsVO" useGeneratedKeys="true"
+		keyColumn = "blog_id" keyProperty="blogId">
+		INSERT INTO BLOG(BLOG_ID, TITLE, REG_DATE, UPDATE_DATE)
+		VALUES(
+			BLOG_SEQ.NEXTVAL
+			, #{title}
+			, sysdate
+			, sysdate)
+	</insert>
+	<update id="updateBlogs" parameterType="BlogsVO">
+		UPDATE BLOG SET
+			TITLE = #{ title }
+			, REG_DATE = SYSDATE
+			, UPDATE_DATE = SYSDATE 
+		WHERE BLOG_ID = #{ blogId }
+	</update>
+	
+	<delete id="deleteBlogs">
+		DELETE FROM BLOG
+		WHERE BLOG_ID = #{ blogId }
+	</delete>
+	
 	<select id="count"	resultType="int">
 		SELECT count(*) FROM blog
 	</select>

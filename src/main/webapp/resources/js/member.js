@@ -8,10 +8,10 @@ $.fn.checkUserId = function(){
 	var submitBtn = $(':submit');
 	
 	self.click(function(){
-		var userId = idInput.val();	
-		if(!userId) return alert('사용자 ID를 입력하세요');
+		var memberId = idInput.val();	
+		if(!memberId) return alert('사용자 ID를 입력하세요');
 		
-		$.get('id-check/' + userId, function(data){
+		$.get('id-check/' + memberId, function(data){
 			if(data.result == 'ok'){
 				msgSpan.html(data.message).removeClass('error');
 				submitBtn.prop('disabled', false);

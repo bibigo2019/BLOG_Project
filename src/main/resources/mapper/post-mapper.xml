@@ -48,4 +48,18 @@
 		AND POST_ID = #{ postId }
 	</delete>
 	
+	<select id="count"	resultType="int">
+		SELECT COUNT(*) FROM POST
+	</select>
+	
+	<select id="getPage" resultType="PostVO">
+		SELECT BLOG_ID, POST_ID, TITLE, CONTENT, READ_CNT, REG_DATE, UPDATE_DATE
+		FROM(
+			SELECT ROW_NUMBER() OVER (ORDER BY REG_DATE DESC) AS SEQ,
+				BLOG_ID, POST_ID, TITLE, CONTENT, READ_CNT, REG_DATE, UPDATE_DATE
+			FROM POST
+		)
+		WHERE SEQ BETWEEN #{start} AND #{end}
+		ORDER BY POST_ID DESC
+	</select>
 </mapper>
