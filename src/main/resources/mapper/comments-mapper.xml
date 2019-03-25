@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.autocar.comments.dao.CommentsDao">
+	<!-- insert시 sequence가 발급하는 cmt_id 값을 받아 Comments 객체에 설정 --> 
+	<!--  
+	<insert id="insert" parameterType="Comments"> 
+		insert into comments
+		(cmt_id, p_cmt_id, blog_id, post_id, depth, member_id, 
+			content, reg_date, update_date) 
+		values(COMMENTS_SEQ.NEXTVAL, #{pCmtId}, 
+			#{blogId}, #{postId}, #{depth}, #{memberId}, #{content}, SYSDATE, SYSDATE) 
+	</insert>
+ 	-->
+ 	
+ 	<select id="getCommentsByPostId" parameterType="int" resultType="Comments"> 
+		SELECT * FROM comments
+		WHERE post_id = #{postId}
+	</select>
+	
+	<select id="count" parameterType="int" resultType="int">
+		SELECT count(*) FROM comments 
+		WHERE post_id = #{postId}
+	</select>
+	
+	<delete id="deleteComments" parameterType="int">
+		DELETE * FROM comments
+		WHERE cmt_id = #{cmtId}
+	</delete>
+	
+	<!-- 
+	<update id="update" parameterType="Comments"> 
+	 	UPDATE comments SET 
+	 		content = #{content}, 
+	 		update_date = SYSDATE 
+	 	WHERE cmt_id=#{cmtId}
+	</update>
+	-->
+</mapper>
