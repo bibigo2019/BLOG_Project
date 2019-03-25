@@ -36,7 +36,7 @@
 			</c:if>
 			<c:if test="${not empty USER}">
 				<li class="nav-item"><a class="nav-link"
-					href="${contextPath}/view">
+					href="${contextPath}/view?page=${param.page}">
 						<img src="${contextPath}/avata/${USER.memberId}"
 						class="rounded-circle avata-sm">
 						${USER.memberId}

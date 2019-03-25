@@ -98,8 +98,24 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	@Transactional
 	public boolean update(MemberVO memberVO, MultipartFile file) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		if(!checkUserPassword(memberVO))
+			return false;
+		
+		if (!file.isEmpty()) {
+			memberVO.setAvata(ImageUtil.thumb(file.getBytes()));
+		}
+
+		if(dao.update(memberVO) != 1) return false;
+	
+		return true;
+	}
+	
+	private boolean checkUserPassword(MemberVO memberVO) throws Exception {
+		MemberVO user = dao.findById(memberVO.getMemberId());
+		String userPassword = user.getPassword();
+		String password = memberVO.getPassword();
+		password = SHA256Util.getEncrypt(password, user.getSalt());
+		return userPassword.equals(password);
 	}
 	
 	@Override

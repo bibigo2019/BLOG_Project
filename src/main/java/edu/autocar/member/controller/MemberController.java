@@ -3,6 +3,7 @@ package edu.autocar.member.controller;
 import java.io.InputStream;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
@@ -12,7 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -96,6 +99,40 @@ public class MemberController {
 		final HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.IMAGE_JPEG);
 		return new ResponseEntity<byte[]>(images, headers, status);
+	}
+	
+	@GetMapping("/view")
+	public String view(Model model, HttpSession session) throws Exception {
+		MemberVO user = (MemberVO) session.getAttribute("USER");
+		MemberVO memberVO = service.getMember(user.getMemberId());
+		model.addAttribute("memberVO", memberVO);
+		return "member/view";
+	}
+	
+	@GetMapping("/edit")
+	public String getEdit(Model model, HttpSession session) throws Exception {
+		MemberVO user = (MemberVO) session.getAttribute("USER");
+		MemberVO memberVO = service.getMember(user.getMemberId());
+		model.addAttribute("memberVO", memberVO);
+		return "member/edit";
+	}
+
+	@PostMapping("/edit")
+	public String postEdit(@Valid MemberVO memberVO, BindingResult result, 
+			@RequestParam("avataImage") MultipartFile file,
+			HttpSession session) throws Exception {
+		if (result.hasErrors())
+			return "member/edit";
+		
+		if (service.update(memberVO, file)) {
+			memberVO = service.getMember(memberVO.getMemberId());
+			session.setAttribute("USER", memberVO);
+			return "redirect:/view";
+		} else {
+			FieldError fieldError = new FieldError("memberVO", "password", "비밀번호가 일치하지 않습니다");
+			result.addError(fieldError);
+			return "member/edit";
+		}
 	}
 
 }

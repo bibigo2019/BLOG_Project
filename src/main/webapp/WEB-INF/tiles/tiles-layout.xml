@@ -45,7 +45,7 @@
 		
 	</definition>
 
-	<!-- 회원가입/로그인 -->
+	<!-- 회원가입/로그인/회원정보 -->
 	<definition name="member/*" extends="default">
 		<put-attribute name="body" value="/WEB-INF/views/member/{1}.jsp" />
 	</definition>
