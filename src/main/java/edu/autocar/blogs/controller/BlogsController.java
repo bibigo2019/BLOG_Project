@@ -78,8 +78,10 @@ public class BlogsController {
 	@GetMapping("/{blogId}/list")
 	public String view(@PathVariable int blogId, Model model, @RequestParam(value="page", defaultValue="1") int page) throws Exception {
 		PageInfo<PostVO> pi = postService.getPage(blogId, page);
+		List<PostVO> recommend = postService.selectTopPost(blogId, 2);
 		log.info(pi.toString());
 		model.addAttribute("pi",pi);
+		model.addAttribute("recommend", recommend);
 		
 		return "blogs/view";
 	}

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.autocar.blogs.model.BlogsVO;
 import edu.autocar.cmmn.domain.PageInfo;
 import edu.autocar.post.dao.PostDao;
 import edu.autocar.post.model.PostVO;
@@ -20,6 +19,7 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	public PostVO selectPost(int blogId, int postId) throws Exception {
+		dao.increaseReadCnt(postId);
 		return dao.selectPost(blogId,postId);
 	}
 
@@ -42,7 +42,7 @@ public class PostServiceImpl implements PostService {
 	public PageInfo<PostVO> getPage(int blogId, int page) throws Exception {
 		int start = (page-1)*PER_PAEGE_COUNT;
 		int end = start + PER_PAEGE_COUNT;
-		int totalCount = dao.count();
+		int totalCount = dao.count(blogId);
 		List<PostVO> list = dao.getPage(blogId, start, end);
 		
 		return new PageInfo<>(
@@ -50,5 +50,25 @@ public class PostServiceImpl implements PostService {
 				(int)Math.ceil(totalCount/(double)PER_PAEGE_COUNT),
 				page, PER_PAEGE_COUNT, list);
 	}
+	
+	@Override
+	public List<PostVO> selectTopPost(int blogId, int num) throws Exception {
+		return dao.selectTopPost(blogId, num);
+	}
+	
+	@Override
+	public FileVO selectFile(int postId) throws Exception {
+		return dao.selectFile(postId);
+	}
+
+	@Override
+	public int insertFile(FileVO file) throws Exception {
+		return dao.insertFile(file);
+	}
+	@Override
+	public void deleteFile(int postId) throws Exception {
+		dao.deleteFile(postId);
+	}
+	
 
 }

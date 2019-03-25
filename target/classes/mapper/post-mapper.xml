@@ -18,6 +18,13 @@
 		AND B.POST_ID = #{ postId }
 	</select>
 	
+	<select id="selectTopPost" resultType="PostVO">
+		SELECT * FROM POST
+		WHERE BLOG_ID = #{blogId}
+		AND ROWNUM  <![CDATA[<=]]> #{num}
+		ORDER BY READ_CNT DESC
+	</select>
+	
 	<insert id="insertPost" parameterType="PostVO">
 		INSERT INTO POST(BLOG_ID,POST_ID,TITLE,CONTENT,READ_CNT,REG_DATE,UPDATE_DATE)
 		VALUES(
@@ -48,8 +55,8 @@
 		AND POST_ID = #{ postId }
 	</delete>
 	
-	<select id="count"	resultType="int">
-		SELECT COUNT(*) FROM POST
+	<select id="count"	parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM POST WHERE BLOG_ID = #{ blogId } 
 	</select>
 	
 	<select id="getPage" resultType="PostVO">
@@ -63,4 +70,32 @@
 		WHERE SEQ BETWEEN #{start} AND #{end}
 		ORDER BY POST_ID DESC
 	</select>
+	
+	<update id="increaseReadCnt" parameterType="int">
+		UPDATE POST 
+		SET	read_cnt = read_cnt + 1 WHERE post_id = #{postId}
+	</update>
+	
+	
+	<select id="selectFile" resultType="FileVO">
+		SELECT * FROM FILES WHERE POST_ID = #{ postId }
+	</select>
+	
+	<select id="deleteFile">
+		DELETE FROM FILES WHERE POST_ID = #{ postId }
+	</select>
+	
+	<insert id="insertFile" parameterType="FileVO">
+		INSERT INTO FILES(FILE_ID,POST_ID,TYPE,NAME,CONTENT,REG_DATE,UPDATE_DATE)
+		VALUES(
+			FILE_SEQ.NEXTVAL
+			, #{ postId }
+			, 'F'
+			, #{ name }
+			, #{ content, jdbcType=BLOB}
+			, SYSDATE
+			, SYSDATE
+		)
+	</insert>
+	
 </mapper>
