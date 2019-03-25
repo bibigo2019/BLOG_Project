@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import edu.autocar.blogs.model.BlogPostVO;
 import edu.autocar.blogs.model.BlogsVO;
 
 public interface BlogsDao {
@@ -19,4 +20,9 @@ public interface BlogsDao {
 	int count() throws Exception;
 
 	List<BlogsVO> getPage(@Param("start") int start, @Param("end") int end) throws Exception;
+	
+	List<BlogPostVO> selectRandomPosts(@Param("num") int num) throws Exception;
+	
+	List<BlogPostVO> selectRandomBlogs() throws Exception;
+	
 }

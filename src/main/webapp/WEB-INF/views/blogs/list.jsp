@@ -17,8 +17,23 @@
 
 .carousel-caption {
 	text-align: right;
+	cursor: pointer;
 }
+
+div .carousel-caption:hover {
+	color: #d1d2d6;
+}
+
 </style>
+
+<script>
+	$(function ()  {
+		$('.carousel-item').click(function() {
+			location.href=$(this).data('url');
+		})
+	});
+</script>
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 	<!-- Indicators -->
 	<ul class="carousel-indicators">
@@ -29,34 +44,15 @@
 
 	<!-- The slideshow -->
 	<div class="carousel-inner">
-		<div class="carousel-item active">
-			<div class="carousel-caption">
-				<h1>마이 블로그 #1</h1>
-				<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-					Donec id elit non mi porta gravida at eget metus. Nullam id dolor
-					id nibh ultricies vehicula ut id elit.</p>
+		<c:forEach var="data" items="${ recommend }" varStatus="status">
+			<div data-url="${contextPath}/${data.blogId}/view/${data.postId}" class="carousel-item <c:if test="${ status.count == 1 }">active</c:if>">
+				<div class="carousel-caption">
+					<h1>${ data.postTitle }</h1>
+					<p>${ data.summary } Summary좀 추가해주실래요?</p>
+				</div>
+				<img src="${contextPath}/image/${ data.blogId }" alt="">
 			</div>
-			<img src="${contextPath}/resources/images/demo_1.jpg"
-				alt="Los Angeles">
-		</div>
-		<div class="carousel-item">
-			<div class="carousel-caption">
-				<h1>마이 블로그 #2</h1>
-				<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-					Donec id elit non mi porta gravida at eget metus. Nullam id dolor
-					id nibh ultricies vehicula ut id elit.</p>
-			</div>
-			<img src="${contextPath}/resources/images/demo_2.jpg" alt="Chicago">
-		</div>
-		<div class="carousel-item">
-			<div class="carousel-caption">
-				<h1>마이 블로그 #3</h1>
-				<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-					Donec id elit non mi porta gravida at eget metus. Nullam id dolor
-					id nibh ultricies vehicula ut id elit.</p>
-			</div>
-			<img src="${contextPath}/resources/images/demo_2.jpg" alt="New York">
-		</div>
+		</c:forEach>
 	</div>
 
 	<!-- Left and right controls -->
@@ -67,97 +63,35 @@
 	</a>
 </div>
 
+<style>
+	 #container1{
+	    height: 770px;
+	    overflow: hidden;
+	}
+	
+	#container2{
+	    height: 769px;
+	    overflow: auto;
+	    padding-right: 20px;
+	}
+</style>
+
 <div class="container marketing">
-
 	<!-- Three columns of text below the carousel -->
-	<div class="row mt-5">
-		<div class="col-lg-4">
-			<svg class="bd-placeholder-img rounded-circle" width="140"
-				height="140" xmlns="http://www.w3.org/2000/svg"
-				preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
-				aria-label="Placeholder: 140x140">
-				<title>Placeholder</title><rect width="100%" height="100%"
-					fill="#777"></rect>
-				<text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-			<h2>Heading</h2>
-			<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis
-				euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.
-				Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				Praesent commodo cursus magna.</p>
-			<p>
-				<a class="btn btn-secondary" href="#" role="button">View details
-					&raquo;</a>
-			</p>
+	<div class="mt-5">
+		<h1>Members <i class="far fa-user"></i></h1>
+	</div>
+	
+	<div class="" id="container1" >
+	<div class="row mt-5 mb-5 temp" id="container2">
+		<c:forEach var="data" items="${ blogs }" varStatus="status">
+		<div class="col-lg-3" style="text-align:center;padding:10px;">
+			<a href="${contextPath}/${ data.blogId }/list"><img src="/blogs/avata/${ data.memberId }" class="rounded-circle avata-lg"></a>
+			<h2>${ data.name } (@${ data.memberId })</h2>
+			<p>Blogs. ${ data.blogTitle }</p>
 		</div>
-		<!-- /.col-lg-4 -->
-		<div class="col-lg-4">
-			<svg class="bd-placeholder-img rounded-circle" width="140"
-				height="140" xmlns="http://www.w3.org/2000/svg"
-				preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
-				aria-label="Placeholder: 140x140">
-				<title>Placeholder</title><rect width="100%" height="100%"
-					fill="#777"></rect>
-				<text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-			<h2>Heading</h2>
-			<p>Duis mollis, est non commodo luctus, nisi erat porttitor
-				ligula, eget lacinia odio sem nec elit. Cras mattis consectetur
-				purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo,
-				tortor mauris condimentum nibh.</p>
-			<p>
-				<a class="btn btn-secondary" href="#" role="button">View details
-					&raquo;</a>
-			</p>
-		</div>
-		<!-- /.col-lg-4 -->
-		<div class="col-lg-4">
-			<svg class="bd-placeholder-img rounded-circle" width="140"
-				height="140" xmlns="http://www.w3.org/2000/svg"
-				preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
-				aria-label="Placeholder: 140x140">
-				<title>Placeholder</title><rect width="100%" height="100%"
-					fill="#777"></rect>
-				<text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-			<h2>Heading</h2>
-			<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
-				egestas eget quam. Vestibulum id ligula porta felis euismod semper.
-				Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
-				nibh, ut fermentum massa justo sit amet risus.</p>
-			<p>
-				<a class="btn btn-secondary" href="#" role="button">View details
-					&raquo;</a>
-			</p>
-		</div>
-		<!-- /.col-lg-4 -->
+		</c:forEach>
+	</div>
 	</div>
 	<!-- /.row -->
-
-	<!-- 블로그 리스트 DB 연동-->
-
-	<c:forEach var="blogsVO" items="${pi.list}">
-		<hr class="featurette-divider">
-		<a href="${blogsVO.blogId}/list">
-			<div class="row featurette">
-				<div class="col-md-7">
-					<h2 class="featurette-heading">${blogsVO.title}</h2>
-					<p class="lead">blog 개요 설명 컬럼 필요 (=> blogsVO.summary)</p>
-				</div>
-				<div class="col-md-5">
-					<svg
-						class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-						width="500" height="300" xmlns="http://www.w3.org/2000/svg"
-						preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
-						aria-label="Placeholder: 500x300" id="temp">
-				<title>Placeholder</title><rect width="100%" height="100%"
-							fill="#eee"></rect>
-				<text x="50%" y="50%" fill="#aaa" dy=".3em">블로그 메인 이미지</text></svg>
-				</div>
-			</div>
-		</a>
-	</c:forEach>
 </div>
-
-<!-- 페이지네이션 -->
-<iot:pagination pageInfo="${pi}" />
