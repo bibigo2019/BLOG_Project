@@ -67,10 +67,11 @@
 								<a class="url fn n" href="${contextPath}/${blogId}/edit/${postId}">수정</a>&nbsp;|
 								<a class="url fn n" id="delete" href="#">삭제</a>
 							</span>
-
 						</div>
 						<!-- .entry-meta -->
-
+						<div style="float:right;">
+							첨부파일 &nbsp;&nbsp; <a href="${contextPath}/download/${ postId }" >${ file.name }</a>
+						</div>
 					</header>
 					<!-- .entry-header -->
 
