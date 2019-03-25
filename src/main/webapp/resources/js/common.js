@@ -21,10 +21,12 @@ $.fn.deletePanel = function(opt){
 	var url;
 	
 	triger.click(function(){
-		var userId = $(this).data('user-id');
+		var userId = $(this).data('member-id');
 		//특정인 제거
+		
 		if(userId){
-			url = opt.url.replace('\{user-id\}', userId );			
+			console.log(userId);
+			url = opt.url.replace('\{member-id\}', userId );			
 		}
 		else {
 			//선택 삭제
@@ -58,6 +60,8 @@ $.fn.deletePanel = function(opt){
 		if(!confirm("삭제할까요?")) return;
 		
 		//params = $.extend(params, {password })
+		
+		console.log(url + '?password=' + password.val());
 		
 		//Ajax 로 delete 요청
 		axios.delete(url + '?password=' + password.val())

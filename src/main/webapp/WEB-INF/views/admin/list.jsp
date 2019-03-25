@@ -8,7 +8,7 @@
 $(function(){
 	$('#delete-panel').deletePanel({
 		triger : '.delete',
-		url : 'delete/${member-id}',
+		url : 'delete/{member-id}',
 		multiple : '[name=check-item]:checked',
 		moveUrl : 'list?page=${param.page}'
 	});

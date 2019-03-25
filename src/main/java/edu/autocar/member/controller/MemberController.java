@@ -46,7 +46,7 @@ public class MemberController {
 		if (result.hasErrors()) {
 			return "member/join";
 		}
-
+		
 		service.insert(memberVO, file, title);
 		
 		ra.addFlashAttribute("memberVO", memberVO);
