@@ -55,7 +55,7 @@ public class AdminMemberController {
 	}
 	
 	@PostMapping("/edit/{memberId}")
-	public String postEdit(@RequestParam(value = "page") int page, 
+	public String postEdit(@RequestParam(value = "page", defaultValue = "1") int page, 
 						@Valid MemberVO memberVO, BindingResult result, 
 						@RequestParam("avataImage") MultipartFile file, 
 						Model model) throws Exception {
@@ -64,6 +64,7 @@ public class AdminMemberController {
 		}
 		
 		if(service.updateByAdmin(memberVO, file)) {
+			System.out.println("success");
 			return "redirect:/admin/view/" + memberVO.getMemberId() + "?page=" + page;
 		} else {
 			FieldError fieldError = new FieldError("memberVO", "password", "비밀번호가 일치하지 않습니다.");

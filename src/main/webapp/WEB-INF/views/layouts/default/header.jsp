@@ -15,7 +15,7 @@
     		<c:if test="${not empty sessionScope.USER }">
       		<c:if test="${sessionScope.USER.admin == 'Y' }">
       	         <li class="nav-item">
-		         <a class="nav-link" href="${contextPath}/admin/list">Admin</a>
+		         <a class="nav-link" href="${contextPath}/admin/list?page=${param.page}">Admin</a>
 		       </li>
       		</c:if>
       	

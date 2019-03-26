@@ -20,10 +20,7 @@
 	<tiles:insertAttribute name="header" />
 	
 	<div class="row" style="margin-top:5rem;">
-		<div class="col-md-2">
-			<tiles:insertAttribute name="admin-menu" />
-		</div>
-		<div class="col-md-10">
+		<div class="col-md-10 mx-auto">
 			<tiles:insertAttribute name="body" />
 		</div>
 	</div>

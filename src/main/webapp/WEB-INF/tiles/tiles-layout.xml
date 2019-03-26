@@ -19,7 +19,6 @@
 	<!-- 관리자용 -->
 	<definition name="admin/*" template="/WEB-INF/views/layouts/admin_template.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/layouts/default/header.jsp" />
-		<put-attribute name="admin-menu" value="/WEB-INF/views/layouts/admin/admin-menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/admin/{1}.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/layouts/default/footer.jsp" />
 	</definition>
