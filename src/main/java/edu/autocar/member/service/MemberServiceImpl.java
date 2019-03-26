@@ -63,7 +63,6 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	@Transactional
 	public boolean delete(String memberId, String password) throws Exception {
 		if (!checkAdminPassword(password))
 			return false;
