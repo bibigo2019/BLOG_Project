@@ -7,15 +7,22 @@
 .jumbotron {
 	background-image: url(${contextPath}/image/${blogsVO.blogId});
 	background-size: 100% 100%;
-	height: 100%;
+	min-height: 300px;
+}
+#blogTitle{
+	font-size: xx-large;
+}
+#rec{
+	background-color: white;
 }
 </style>
 
 <div class="container">
-
-	<div class="jumbotron p-2 p-md-5 text-white rounded bg-dark ">
+	<div style="margin-top:5rem;">
+	</div>	
+	<div class="jumbotron text-white rounded bg-dark ">
 		<div class="col-md-6 px-0">
-			<h4 class="display-4 font-italic">${blogsVO.title}</h4>
+			<h1 id="blogTitle" class="font-italic">${blogsVO.title}</h1>
 		</div>
 	</div>
 
@@ -25,12 +32,12 @@
 			<div class="col-md-6">
 				<div
 					class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-					<div class="col p-4 d-flex flex-column position-static">
-						<strong class="d-inline-block mb-2 text-primary">Today's Post</strong>
-						<a href="../${data.blogId}/view/${data.postId}">
-							<h1 class="mb-0">${data.title}</h1>
+					<div id="rec" class="col p-4 d-flex flex-column position-static">
+						<strong class="d-inline-block mb-2 text-primary">Today's
+							Post</strong> <a href="../${data.blogId}/view/${data.postId}">
+							<h1 class="mb-0">${data.title}</h1><br/>
+							<medium class="text-muted"> 조회수 : ${data.readCnt}</medium>
 						</a>
-						<p class="card-text mb-auto">${data.content}</p>
 					</div>
 				</div>
 			</div>
@@ -49,7 +56,7 @@
 		<a href="write?page=${pi.page}"><i class="fas fa-edit"></i> 포스트 쓰기</a>
 		(총 : ${pi.totalCount} 건)
 	</div>
-	 </br>
+	</br>
 
 	<!-- list -->
 	<div class="list-group">
