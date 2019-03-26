@@ -42,7 +42,7 @@ $(function(){
 						<button type="submit" class="btn btn-dark ok">
 							<i class="fas fa-check"></i> 수정
 						</button>
-						<a href="list?page=${param.page}" class="btn btn-dark back">
+						<a href="${contextPath}/${blogId}/view/${postId}" class="btn btn-dark back">
 							<i class="fas fa-undo"></i> 취소
 						</a>
 					</div>
