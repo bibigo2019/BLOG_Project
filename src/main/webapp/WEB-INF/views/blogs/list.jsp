@@ -74,12 +74,16 @@ div .carousel-caption:hover {
 	    overflow: auto;
 	    padding-right: 20px;
 	}
+	
+	#members{
+		font-weight: bold;
+	}
 </style>
 
 <div class="container marketing">
 	<!-- Three columns of text below the carousel -->
 	<div class="mt-5">
-		<h1>Members <i class="far fa-user"></i></h1>
+		<h1 id="members">Members <i class="far fa-user"></i></h1>
 	</div>
 	
 	<div class="" id="container1" >
