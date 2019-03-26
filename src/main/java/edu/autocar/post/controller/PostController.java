@@ -1,11 +1,13 @@
 package edu.autocar.post.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -62,7 +64,9 @@ public class PostController {
 	}
 	
 	@PostMapping("/{blogId}/write")
-	public String create( @PathVariable int blogId, @Valid PostVO postVO, BindingResult result) throws Exception {
+	public String create( @PathVariable int blogId, @Valid PostVO postVO,
+			@RequestParam("file") MultipartFile file,
+			BindingResult result) throws Exception {
 		
 		postVO.setBlogId(blogId);
 		
@@ -73,6 +77,11 @@ public class PostController {
 		service.insertPost(postVO);
 		
 		long postId = postVO.getPostId();
+		
+		if(!file.isEmpty()) {
+			FileVO vo = new FileVO(0, postId, "", file.getOriginalFilename(), file.getBytes(), null,null);
+			service.insertFile(vo);
+		}
 		
 		return "redirect:/{blogId}/view/"+postId;
 	}
@@ -130,10 +139,16 @@ public class PostController {
 	
 	@GetMapping("/download/{postId}")
 	public String download(@PathVariable int postId, Model model) throws Exception {
-		//FileInfo fi = service.getFileInfo(imageId);
-		//model.addAttribute("fileInfo", fi);
+		
+		FileVO vo = service.selectFile(postId);
+		File file = new File("download"); 
+		FileUtils.writeByteArrayToFile(file, vo.getContent());
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("file", file);
 		return "download";
 	}
+	
 	
 	
 }

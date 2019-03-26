@@ -20,7 +20,7 @@ $(function(){
 	<div class="row mt-5">
 		<div class="col-md-12">
 			<div class="col-md-12">
-				<form:form modelAttribute="postVO">
+				<form:form modelAttribute="postVO" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="title">제목</label>
 						<form:input path="title" class="form-control" />
@@ -30,6 +30,12 @@ $(function(){
 						<label for="content">내용</label>
 						<form:textarea path="content" class="form-control" rows="10" />
 					</div>
+					
+					<div class="form-group">
+						<label for="content">첨부파일</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="file" name="file"/>
+					</div>
+					
 					<div class="text-center">
 						<button type="submit" class="btn btn-dark ok">
 							<i class="fas fa-check"></i> 저장
