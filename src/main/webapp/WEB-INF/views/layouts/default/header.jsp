@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="${contextPath}/"><img width="100px" src="${contextPath}/resources/images/logo.png" /></a>
@@ -9,14 +10,22 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-         <li class="nav-item">
-          <a class="nav-link" href="${contextPath}/admin/list">Admin</a>
-        </li>
+    	
+    		<ul class="navbar-nav mr-auto">
+    		<c:if test="${not empty sessionScope.USER }">
+      		<c:if test="${sessionScope.USER.admin == 'Y' }">
+      	         <li class="nav-item">
+		         <a class="nav-link" href="${contextPath}/admin/list">Admin</a>
+		       </li>
+      		</c:if>
+      	
         <li class="nav-item">
           <a class="nav-link" href="${contextPath}/editBlog">Blog</a>
         </li>
+        	</c:if>
       </ul>
+    
+      
       <ul class="navbar-nav">
 			<c:if test="${empty USER}">
 				<li class="nav-item"><a class="nav-link"

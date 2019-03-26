@@ -136,11 +136,13 @@
 							<span class="posted-on"><i class="fa fa-calendar-alt"></i> ${ post.updateDate }</span> 
 							<span class="author vcard"> <i class="fa fa-pencil-alt"></i> by <a class="url fn n" href="#">${ post.memberId }</a></span>
 							<span class="meta-viewer"><i class="fa fa-eye"></i> ${ post.readCnt } Views</span> 
+							<c:if test="${ sessionScope.USER.blogId == blogId }">
 							<span class="menu">
 								<a class="url fn n" href="${contextPath}/${blogId}/list">목록</a>&nbsp;|
 								<a class="url fn n" href="${contextPath}/${blogId}/edit/${postId}">수정</a>&nbsp;|
 								<a class="url fn n" id="delete" href="#">삭제</a>
 							</span>
+							</c:if>
 						</div>
 						<!-- .entry-meta -->
 						<div style="float:right;">

@@ -17,7 +17,7 @@ public class MemberVO {
 	private String password;
 	@NotEmpty(message="이름은 필수 항목입니다.")
 	private String name;
-	private char admin;
+	private String admin;
 	private String address;
 	private String phone;
 	@NotEmpty(message="Email은 필수 항목입니다.")
@@ -30,11 +30,10 @@ public class MemberVO {
 	private Date updateDate;
 	
 	public MemberVO() {
-		admin = 'N';
+		admin = "N";
 	}
 	
 	public boolean adminIs() {
-		return admin == 'Y';
-	}
+		return admin == "Y";}
 
 }
