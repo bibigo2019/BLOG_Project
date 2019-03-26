@@ -114,6 +114,56 @@
 		}
 	}
 	
+	function deleteComment(id){
+		  $.ajax({ 
+			url : `${contextPath}/${blogId}/deleteComments/${postId}`+'/'+id, 
+			type : 'delete',
+			dataType : 'json', 
+			cache : false, 
+			success : function(data) {
+				if(data.result == 'success') { 
+					alert("댓글이 삭제 되었습니다.");
+					location.reload(); 
+				} else if(data.result == 'permission'){
+					alert("삭제 권한이 없습니다.");
+					location.reload();
+				} else if(data.result == 'login'){
+					alert("로그인이 필요한 서비스입니다.");
+				} else{
+					alert("댓글 삭제 실패");
+				}
+			}, 
+			error : function(xhr, statusText, errorThrown) { 
+				console.log(`\${statusText} - \${xhr.status} , \$errorThrown`); 
+			}
+		}); 
+	}
+	
+	function deleteComment2(id){
+		  $.ajax({ 
+			url : `${contextPath}/${blogId}/deleteComments2/${postId}`+'/'+id, 
+			type : 'delete',
+			dataType : 'json', 
+			cache : false, 
+			success : function(data) {
+				if(data.result == 'success') { 
+					alert("댓글이 삭제 되었습니다.");
+					location.reload(); 
+				} else if(data.result == 'permission'){
+					alert("삭제 권한이 없습니다.");
+					location.reload();
+				} else if(data.result == 'login'){
+					alert("로그인이 필요한 서비스입니다.");
+				} else{
+					alert("댓글 삭제 실패");
+				}
+			}, 
+			error : function(xhr, statusText, errorThrown) { 
+				console.log(`\${statusText} - \${xhr.status} , \$errorThrown`); 
+			}
+		}); 
+	}
+
 </script>
 
 
@@ -161,6 +211,7 @@
 		</div>
 	</div>
 
+	
 	<div class="row">
 		<div class="col-md-12 mb-2">
 			<form id="commentForm" method="post">
@@ -184,8 +235,11 @@
 		        	        <img width="70" src="${ contextPath }/avata/${ parent.memberId }" class="img img-rounded img-fluid">
 		        	    </div>
 		        	    <div class="col-md-11">
+		        	    	<a id="" href="javascript:deleteComment('${ parent.cmtId }')" style="float:right;" data-open="false">
+		        	    		<i class="fas fa-trash-alt"></i> 삭제
+		        	    	</a>
 		        	    	<a id="" href="javascript:reComment('RT_${ parent.cmtId }')" style="float:right;" data-open="false">
-		        	    		<i class="fa fa-comment-dots"></i> 답글달기
+		        	    		<i class="fa fa-comment-dots"></i> 답글달기&nbsp;&nbsp;
 		        	    	</a>
 		        	        <p>
 		        	            <p><a href="${ contextPath }/${ parent.blogId}/list"><strong>${ parent.memberId }</strong></a>
@@ -218,6 +272,9 @@
 				                   	        <img width="70" src="${ contextPath }/avata/${ child.memberId }" class="img img-rounded img-fluid">
 				                   	    </div>
 				                   	    <div class="col-md-11">
+				                   	    	<a id="" href="javascript:deleteComment2('${ child.cmtId }')" style="float:right;" data-open="false">
+		        	    						<i class="fas fa-trash-alt"></i> 삭제
+		        	    					</a>
 				                   	        <p><a href="${ contextPath }/${ child.blogId}/list"><strong>${ child.memberId }</strong></a>
 				                   	         ${ child.regDate }</p>
 				                   	        <p>${ child.content }</p>
@@ -234,7 +291,7 @@
 	</div>
 </div>
 
-<<!-- Modal -->
+<!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

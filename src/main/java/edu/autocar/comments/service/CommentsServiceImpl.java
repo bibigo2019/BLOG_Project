@@ -30,18 +30,23 @@ public class CommentsServiceImpl implements CommentsService{
 		return new CommentsInfo<>(totalCount, list);
 	}
 
-	/*
-	@Transactional
-	@Override
-	public boolean update(Comments comments) throws Exception {
-		return dao.update(comments) == 1;
-	}
-	*/
 	
 	@Transactional
 	@Override
 	public boolean deleteComments(int cmtId) throws Exception {
+		dao.deleteChild(cmtId);
 		return dao.deleteComments(cmtId) == 1;
+	}
+	
+	@Transactional
+	@Override
+	public boolean deleteComments2(int cmtId) throws Exception {
+		return dao.deleteComments(cmtId) == 1;
+	}
+	
+	@Override
+	public Comments getCommentsByCmtId(int cmtId) throws Exception {
+		return dao.getCommentsByCmtId(cmtId);
 	}
 }
 

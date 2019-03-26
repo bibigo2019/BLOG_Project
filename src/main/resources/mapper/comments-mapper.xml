@@ -11,9 +11,9 @@
 	</insert>
  	
  	<select id="getCommentsByPostId" parameterType="int" resultType="Comments"> 
-		SELECT * 
-		FROM comments
+		SELECT * FROM comments
 		WHERE post_id = #{postId}
+		ORDER BY reg_date
 	</select>
 	
 	<select id="count" parameterType="int" resultType="int">
@@ -21,17 +21,18 @@
 		WHERE post_id = #{postId}
 	</select>
 	
+	<select id="getCommentsByCmtId" parameterType="int" resultType="Comments">
+		SELECT * FROM COMMENTS
+		WHERE CMT_ID = #{cmtId}
+	</select>
+	
 	<delete id="deleteComments" parameterType="int">
-		DELETE * FROM comments
+		DELETE FROM comments
 		WHERE cmt_id = #{cmtId}
 	</delete>
 	
-	<!-- 
-	<update id="update" parameterType="Comments"> 
-	 	UPDATE comments SET 
-	 		content = #{content}, 
-	 		update_date = SYSDATE 
-	 	WHERE cmt_id=#{cmtId}
-	</update>
-	-->
+	<delete id="deleteChild" parameterType="int">
+		DELETE FROM comments
+		WHERE pa_cmt_id = #{cmtId}
+	</delete>
 </mapper>

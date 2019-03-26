@@ -11,4 +11,6 @@ public interface CommentsDao {
 	List<Comments> getCommentsByPostId(int postId) throws Exception;
 	int count(int postId) throws Exception;
 	int deleteComments(@Param("cmtId") Integer cmtId) throws Exception;
+	void deleteChild(int cmtId);
+	Comments getCommentsByCmtId(int cmtId) throws Exception;
 }
