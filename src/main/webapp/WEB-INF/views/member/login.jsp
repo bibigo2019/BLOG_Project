@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<div class="row">
+<div class="row" style="margin-top: 5rem;">
 	<div class="col-sm-5 mx-auto">
 		<div class="text-center">
 			<a href="${contextPath}/"> <img class="mx-auto" width="250px"

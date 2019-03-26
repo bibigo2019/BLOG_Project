@@ -9,8 +9,7 @@
 		$('#memberVO').checkPassword();
 	})
 </script>
-<div class="row">
-
+<div class="row" style="margin-top: 5rem;">
 	<div class="col-sm-6 mx-auto">
 		<div class="text-center">
 			<a href="#"> <img class="mx-auto" width="250px"

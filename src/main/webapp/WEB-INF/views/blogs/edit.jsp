@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <div class="row">
 	<div class="col-sm-6 mx-auto">
-		<h2 class="my-5 text-primary">
+		<h2 class="my-5 text-success" style="font-weight: bold;">
 			<i class="fas fa-user-cog"></i> 블로그 수정
 		</h2>
 		<form:form modelAttribute="blogsVO" enctype="multipart/form-data">			
@@ -19,11 +19,11 @@
 				<input type="file" name="blogImage"/>
 			</div>
 			<div class="text-center">
-				<button type="submit" class="btn btn-primary ok">
+				<button type="submit" class="btn btn-success ok">
 					<i class="fas fa-check"></i> 완료
 				</button>
-				<a href="#"
-					class="btn btn-primary back"> <i class="fas fa-undo"></i> 돌아가기
+				<a href="${contextPath}/"
+					class="btn btn-success back"> <i class="fas fa-undo"></i> 돌아가기
 				</a>
 			</div>
 		</form:form>

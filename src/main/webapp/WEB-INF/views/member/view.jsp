@@ -3,9 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script src="${contextPath}/resources/bower_components/axios/dist/axios.min.js"></script>
+
 <div class="row">
 	<div class="col-sm-6 mx-auto">
-		<h2 class="my-5 text-primary">
+		<h2 class="my-5 text-success" style="font-weight: bold;">
 			<i class="fas fa-user"></i> 사용자 정보
 		</h2>
 		<div class="my-1">사용자 ID : 
@@ -31,5 +32,5 @@
 
 <div class="text-center">
 	<a href="${contextPath}/edit?page=${param.page}"
-		class="btn btn-primary text-white"><i class="fas fa-edit"></i> 수정</a>
+		class="btn btn-success text-white"><i class="fas fa-edit"></i> 수정</a>
 </div>
