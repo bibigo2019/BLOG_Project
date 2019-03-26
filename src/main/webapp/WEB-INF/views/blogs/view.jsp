@@ -72,7 +72,7 @@
 								value="${postVO.regDate}" pattern="yyyy-MM-dd" />
 						</small>
 					</div>
-					<p class="mb-4">포스트 내용이 들어갈 자리입니다.</p>
+					<p class="mb-4"></p>
 				</a>
 			</c:forEach>
 		</ul>
