@@ -13,6 +13,9 @@
          <li class="nav-item">
           <a class="nav-link" href="${contextPath}/admin/list">Admin</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="${contextPath}/editBlog">Blog</a>
+        </li>
       </ul>
       <ul class="navbar-nav">
 			<c:if test="${empty USER}">

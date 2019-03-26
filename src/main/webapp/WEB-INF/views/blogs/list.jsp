@@ -50,11 +50,11 @@ div .carousel-caption:hover {
 					<h1>${ data.postTitle }</h1>
 					<p>by. ${ data.blogTitle } (@${ data.memberId })</p>
 				</div>
-				<img src="${contextPath}/image/${ data.blogId }" alt="">
+				<img src="${contextPath}/image/${ data.blogId }" />
 			</div>
 		</c:forEach>
 	</div>
-
+	
 	<!-- Left and right controls -->
 	<a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
 		<span class="carousel-control-prev-icon"></span>

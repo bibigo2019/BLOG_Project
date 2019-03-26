@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import edu.autocar.blogs.dao.BlogsDao;
 import edu.autocar.blogs.model.BlogPostVO;
 import edu.autocar.blogs.model.BlogsVO;
 import edu.autocar.cmmn.domain.PageInfo;
+import edu.autocar.cmmn.util.ImageUtil;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -56,6 +58,14 @@ public class BlogsServiceImpl implements BlogsService {
 		return dao.selectBlogs(blogId);
 	}
 	
-	
+	@Override
+	@Transactional
+	public boolean updateBlogs(BlogsVO blogsVO, MultipartFile file) throws Exception {
+		if (!file.isEmpty()) {
+			blogsVO.setImg(file.getBytes());
+		}
+		if(dao.updateBlogs(blogsVO) != 1) return false;
+		return true;
+	}
 
 }

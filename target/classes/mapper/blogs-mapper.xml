@@ -55,9 +55,10 @@
 	</insert>
 	<update id="updateBlogs" parameterType="BlogsVO">
 		UPDATE BLOG SET
-			TITLE = #{ title }
-			, REG_DATE = SYSDATE
-			, UPDATE_DATE = SYSDATE 
+			TITLE = #{ title }, 
+			<if test=" img != null and img != ''"> img = #{img, jdbcType=BLOB}, </if>
+			REG_DATE = SYSDATE,
+			UPDATE_DATE = SYSDATE 
 		WHERE BLOG_ID = #{ blogId }
 	</update>
 	

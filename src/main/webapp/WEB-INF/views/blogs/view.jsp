@@ -5,8 +5,8 @@
 <%@ taglib tagdir="/WEB-INF/tags/util" prefix="iot"%>
 <style>
 .jumbotron {
-	background-image: url(${contextPath}/resources/images/demo_1.jpg);
-	background-size: cover;
+	background-image: url(${contextPath}/image/${blogsVO.blogId});
+	background-size: 100% 100%;
 	height: 100%;
 }
 </style>
@@ -15,10 +15,7 @@
 
 	<div class="jumbotron p-2 p-md-5 text-white rounded bg-dark ">
 		<div class="col-md-6 px-0">
-			<h1 class="display-4 font-italic">${blogsVO.title}</h1>
-			<p class="lead mb-0">
-				<a href="#" class="text-white font-weight-bold">Continue reading...</a>
-			</p>
+			<h4 class="display-4 font-italic">${blogsVO.title}</h4>
 		</div>
 	</div>
 
