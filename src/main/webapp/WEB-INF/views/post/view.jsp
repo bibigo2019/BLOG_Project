@@ -42,6 +42,8 @@
 					success : function(data) {
 						if(data.result == 'success') { 
 							location.reload();
+						} else if (data.result == 'login'){
+							alert("로그인이 필요한 서비스입니다");
 						} else {
 							alert(data.result); 
 						} 
@@ -65,6 +67,8 @@
 					success : function(data) {
 						if(data.result == 'success') { 
 							location.reload();
+						} else if (data.result == 'login'){
+							alert("로그인이 필요한 서비스입니다");
 						} else {
 							alert(data.result); 
 						} 

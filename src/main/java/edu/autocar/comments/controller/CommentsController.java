@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import edu.autocar.blogs.model.BlogsVO;
 import edu.autocar.comments.domain.Comments;
 import edu.autocar.comments.service.CommentsService;
 import edu.autocar.member.model.MemberVO;
@@ -33,12 +32,15 @@ public class CommentsController {
 			@RequestParam("pCmtId") int pCmtId, HttpSession session) throws Exception {
 		Map<String, String> map = new HashMap<>();
 		MemberVO member = (MemberVO) session.getAttribute("USER");
-
-		Comments comments = new Comments(0, pCmtId, blogId, postId, depth, member.getMemberId(), content, "", "");
-		if (service.create(comments) > 0) {
-			map.put("result", "success");
+		if (member != null) {
+			Comments comments = new Comments(0, pCmtId, blogId, postId, depth, member.getMemberId(), content, "", "");
+			if (service.create(comments) > 0) {
+				map.put("result", "success");
+			} else {
+				map.put("result", "비밀번호가 일치하지 않습니다.");
+			}
 		} else {
-			map.put("result", "비밀번호가 일치하지 않습니다.");
+			map.put("result", "login");
 		}
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "application/json; charset=utf-8");
